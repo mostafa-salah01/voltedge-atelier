@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المجموعة الحصرية Limited Edition | VoltEdge Atelier — فولت إيدج أتيليه</title>
+  <meta name="description" content="المجموعة الحصرية ذات الإصدار المحدود من أتيليه فولت إيدج — تحف فنية مرقمة مشغولة يدوياً بخيوط الذهب والحرير الخالص." />
+  <meta property="og:title" content="المجموعة الحصرية Limited Edition | VoltEdge Atelier" />
+  <meta property="og:description" content="المجموعة الحصرية ذات الإصدار المحدود من أتيليه فولت إيدج — تحف فنية مرقمة مشغولة يدوياً." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ivory: '#FDFBF7',
+            royalBeige: '#F5F0EB',
+            matteGold: '#D4AF37',
+            goldHover: '#B89428',
+            royalBronze: '#8D6E63',
+            espresso: '#1E1916',
+            obsidian: '#120F0D',
+            obsidianCard: '#1B1613',
+            mutedCocoa: '#6E5D54'
+          },
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif'],
+            amiri: ['Amiri', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #120F0D;
+      color: #FDFBF7;
+      overflow-x: hidden;
+    }
+    .font-display {
+      font-family: 'Amiri', serif;
+    }
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+    .nav-link-active {
+      color: #8D6E63;
+      border-bottom: 2px solid #D4AF37;
+      font-weight: 700;
+    }
+    .gold-border-glow {
+      box-shadow: 0 24px 48px -18px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(212, 175, 55, 0.32);
+    }
+  </style>
+</head>
+<body class="bg-obsidian text-ivory antialiased selection:bg-matteGold selection:text-espresso">
+
+  <!-- HEADER موحد (خلفية كريمية موحدة) -->
+  <header class="sticky top-0 z-40 bg-ivory/95 backdrop-blur-md border-b-2 border-matteGold/50 text-espresso">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-8 h-20 flex items-center justify-between gap-4">
+      
+      <div class="flex items-center gap-3 lg:gap-7">
+        <button id="mobile-menu-btn" type="button" aria-label="فتح قائمة التنقل" class="lg:hidden p-2.5 rounded-lg border border-royalBronze/20 text-espresso hover:bg-royalBeige transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+        <nav aria-label="التنقل الرئيسي" class="hidden lg:flex items-center gap-6 text-[15px] font-medium text-espresso/85">
+          <a href="index.html" class="py-1.5 hover:text-royalBronze whitespace-nowrap transition-colors">الرئيسية</a>
+          <a href="evening-dresses.html" class="py-1.5 hover:text-royalBronze whitespace-nowrap transition-colors">فساتين سهرة</a>
+          <a href="wedding-bridal.html" class="py-1.5 hover:text-royalBronze whitespace-nowrap transition-colors">زفاف وعرائس</a>
+          <a href="accessories.html" class="py-1.5 hover:text-royalBronze whitespace-nowrap transition-colors">إكسسوارات</a>
+          <a href="exclusive-collection.html" class="py-1.5 nav-link-active whitespace-nowrap transition-colors">المجموعة الحصرية</a>
+        </nav>
+
+        <button id="open-cart-btn" type="button" class="relative inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-royalBeige hover:bg-matteGold/15 border border-matteGold/40 text-espresso text-sm font-medium transition-colors whitespace-nowrap">
+          <svg class="w-4 h-4 text-royalBronze" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span>السلة</span>
+          <span id="cart-count-badge" class="tabular-nums inline-flex items-center justify-center min-w-[22px] h-[22px] px-1.5 text-xs font-bold rounded-full bg-matteGold text-espresso transition-transform duration-200">0</span>
+        </button>
+      </div>
+
+      <a href="index.html" dir="ltr" class="font-display text-2xl sm:text-3xl font-bold tracking-wider text-espresso hover:text-royalBronze transition-colors whitespace-nowrap">
+        VoltEdge <span class="text-matteGold font-normal italic">Atelier</span>
+      </a>
+
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden bg-ivory border-t border-royalBronze/15 px-6 py-5 space-y-3 shadow-lg text-espresso">
+      <nav class="flex flex-col space-y-2.5 text-base font-medium">
+        <a href="index.html" class="py-2 px-3 rounded-lg hover:bg-royalBeige transition-colors">الرئيسية</a>
+        <a href="evening-dresses.html" class="py-2 px-3 rounded-lg hover:bg-royalBeige transition-colors">فساتين سهرة</a>
+        <a href="wedding-bridal.html" class="py-2 px-3 rounded-lg hover:bg-royalBeige transition-colors">زفاف وعرائس</a>
+        <a href="accessories.html" class="py-2 px-3 rounded-lg hover:bg-royalBeige transition-colors">إكسسوارات</a>
+        <a href="exclusive-collection.html" class="py-2 px-3 rounded-lg bg-royalBeige text-royalBronze font-bold">المجموعة الحصرية</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 1. مقدمة جناح المجموعة الحصرية -->
+  <section class="relative py-24 sm:py-32 overflow-hidden border-b border-matteGold/30">
+    <img
+      src="/images/banner-exclusive.jfif"
+      alt="خلفية جناح المجموعة الحصرية ذات الإصدار المحدود في أتيليه فولت إيدج"
+      referrerPolicy="no-referrer"
+      class="absolute inset-0 w-full h-full object-cover object-center opacity-35"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-obsidian/90 via-obsidian/75 to-obsidian"></div>
+
+    <div class="relative z-10 max-w-[1220px] mx-auto px-4 sm:px-8 text-center space-y-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded border border-matteGold/60 bg-matteGold/10 text-matteGold text-xs font-bold tracking-wider">
+        <span>HAUTE COUTURE ARCHIVE · LIMITED EDITION</span>
+        <span>·</span>
+        <span>إصدار محدود ومرقّم</span>
+      </div>
+      <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-bold text-ivory leading-tight" style="text-wrap: balance;">
+        المجموعة الحصرية — ٤ تحف فنية لا تتكرر
+      </h1>
+      <p class="text-royalBeige/80 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-light">
+        صُممت هذه المجموعة الخاصة لنخبة السيدات الباحثات عن التفرد المطلق؛ حيث يُنتج من كل تصميم عدد محدود جداً على مستوى العالم، مرفقاً بشهادة أصالة مختومة من الأتيليه ورقم تسلسلي محفور.
+      </p>
+    </div>
+  </section>
+
+  <!-- 2. عرض القطع الـ 4 الحصرية -->
+  <section class="max-w-[1280px] mx-auto px-4 sm:px-8 py-16 sm:py-24 space-y-16">
+    
+    <!-- القطعة 1 -->
+    <article class="gold-border-glow bg-obsidianCard rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+      <div class="lg:col-span-5 relative aspect-[3/4] lg:aspect-auto bg-espresso overflow-hidden group">
+        <img
+          src="/images/exclusive-1.jfif"
+          alt="فستان كوتور إمبريال بالمخمل البرونزي وخيوط الذهب عيار 24 — إصدار محدود"
+          referrerPolicy="no-referrer"
+          class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+        />
+        <div class="absolute top-4 right-4 bg-matteGold text-espresso px-4 py-1.5 rounded font-bold text-xs shadow-lg flex items-center gap-1.5">
+          <span>★</span>
+          <span>Limited Edition · إصدار محدود</span>
+        </div>
+        <div class="absolute bottom-4 right-4 bg-obsidian/90 border border-matteGold/50 text-matteGold px-3 py-1 rounded text-xs tabular-nums">
+          إصدار مرقّم: ٠٧ قطع فقط عالمياً
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 p-7 sm:p-12 flex flex-col justify-between space-y-8">
+        <div class="space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-matteGold border-b border-matteGold/20 pb-3">
+            <span>القطعة رقم ٠١ · أرشيف الكوتور الملكي</span>
+            <span class="tabular-nums font-bold">★ 5.0 (تقييم النخبة)</span>
+          </div>
+
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-ivory">
+            كوتور "إمبريال" بالمخمل البرونزي وخيوط الذهب عيار ٢٤
+          </h2>
+
+          <p class="text-royalBeige/80 text-sm sm:text-base leading-relaxed">
+            تحفة معمارية من المخمل الحريري الفرنسي باللون البرونزي العميق، مزودة بكاب ملكي منسدل مطرز يدوياً بخيوط مطلية بالذهب الخالص عيار ٢٤ وأحجار الكريستال النمساوي الدخاني.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-3">
+            <div class="p-3.5 rounded-xl bg-obsidian/70 border border-matteGold/25">
+              <p class="text-[11px] text-matteGold">ساعات العمل اليدوي</p>
+              <p class="font-display text-xl font-bold text-ivory mt-0.5 tabular-nums">٣٤٠ ساعة تطريز</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-obsidian/70 border border-matteGold/25">
+              <p class="text-[11px] text-matteGold">مصدر الأقمشة</p>
+              <p class="font-display text-xl font-bold text-ivory mt-0.5">مخمل ليون — فرنسا</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-obsidian/70 border border-matteGold/25">
+              <p class="text-[11px] text-matteGold">شهادة الأصالة</p>
+              <p class="font-display text-xl font-bold text-ivory mt-0.5">مرقّمة ومختومة</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-matteGold/25 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+          <div>
+            <span class="block text-xs text-royalBeige/60">السعر الشامل للتفصيل الخاص والشحن المؤمّن:</span>
+            <span class="tabular-nums text-3xl font-bold text-matteGold">22,500 <small class="text-sm font-normal text-ivory">ج.م</small></span>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onclick="addToCart('excl-1', 'كوتور إمبريال بالمخمل والذهب (إصدار محدود)', 22500, '/images/exclusive-1.jfif', 'المجموعة الحصرية')"
+              class="px-7 py-3.5 rounded-lg bg-matteGold hover:bg-goldHover text-espresso font-bold text-sm transition-colors shadow-lg whitespace-nowrap"
+            >
+              أضيفي للسلة الآن
+            </button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- القطعة 2 -->
+    <article class="gold-border-glow bg-obsidianCard rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+      <div class="lg:col-span-5 relative aspect-[3/4] lg:aspect-auto bg-espresso overflow-hidden group">
+        <img
+          src="/images/exclusive-2.jfif"
+          alt="فستان سيمفونية الذهب الدمشقي من الحرير الخالص — إصدار محدود"
+          referrerPolicy="no-referrer"
+          class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+        />
+        <div class="absolute top-4 right-4 bg-matteGold text-espresso px-4 py-1.5 rounded font-bold text-xs shadow-lg flex items-center gap-1.5">
+          <span>★</span>
+          <span>Limited Edition · إصدار محدود</span>
+        </div>
+        <div class="absolute bottom-4 right-4 bg-obsidian/90 border border-matteGold/50 text-matteGold px-3 py-1 rounded text-xs tabular-nums">
+          إصدار مرقّم: ٠٥ قطع فقط عالمياً
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 p-7 sm:p-12 flex flex-col justify-between space-y-8">
+        <div class="space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-matteGold border-b border-matteGold/20 pb-3">
+            <span>القطعة رقم ٠٢ · أرشيف الكوتور الملكي</span>
+            <span class="tabular-nums font-bold">★ 5.0 (تقييم النخبة)</span>
+          </div>
+
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-ivory">
+            فستان "سيمفونية الذهب" بحرير الدوشيس والكريستال المقطوع
+          </h2>
+
+          <p class="text-royalBeige/80 text-sm sm:text-base leading-relaxed">
+            تصميم استثنائي ينبض بالضوء، صُنع من حرير الدوشيس الإيطالي بلون الشامبين الملكي مع كورسيه منحوت يدوياً ومرصع بأكثر من ٤,٥٠٠ قطعة كريستال مقطوع ولؤلؤ طبيعي.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-3">
+            <div class="p-3.5 rounded-xl bg-obsidian/70 border border-matteGold/25">
+              <p class="text-[11px] text-matteGold">ساعات العمل اليدوي</p>
+              <p class="font-display text-xl font-bold text-ivory mt-0.5 tabular-nums">٢٩٠ ساعة تطريز</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-obsidian/70 border border-matteGold/25">
+              <p class="text-[11px] text-matteGold">مصدر الأقمشة</p>
+              <p class="font-display text-xl font-bold text-ivory mt-0.5">حرير كومو — إيطاليا</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-obsidian/70 border border-matteGold/25">
+              <p class="text-[11px] text-matteGold">شهادة الأصالة</p>
+              <p class="font-display text-xl font-bold text-ivory mt-0.5">مرقّمة ومختومة</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-matteGold/25 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+          <div>
+            <span class="block text-xs text-royalBeige/60">السعر الشامل للتفصيل الخاص والشحن المؤمّن:</span>
+            <span class="tabular-nums text-3xl font-bold text-matteGold">19,800 <small class="text-sm font-normal text-ivory">ج.م</small></span>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onclick="addToCart('excl-2', 'فستان سيمفونية الذهب بحرير الدوشيس (إصدار محدود)', 19800, '/images/exclusive-2.jfif', 'المجموعة الحصرية')"
+              class="px-7 py-3.5 rounded-lg bg-matteGold hover:bg-goldHover text-espresso font-bold text-sm transition-colors shadow-lg whitespace-nowrap"
+            >
+              أضيفي للسلة الآن
+            </button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- القطعة 3 -->
+    <article class="gold-border-glow bg-obsidianCard rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+      <div class="lg:col-span-5 relative aspect-[3/4] lg:aspect-auto bg-espresso overflow-hidden group">
+        <img
+          src="/images/exclusive-3.jfif"
+          alt="فستان زفاف السيادة الملكية باللؤلؤ الطبيعي ودانتيل كاليه — إصدار محدود"
+          referrerPolicy="no-referrer"
+          class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+        />
+        <div class="absolute top-4 right-4 bg-matteGold text-espresso px-4 py-1.5 rounded font-bold text-xs shadow-lg flex items-center gap-1.5">
+          <span>★</span>
+          <span>Limited Edition · إصدار محدود</span>
+        </div>
+        <div class="absolute bottom-4 right-4 bg-obsidian/90 border border-matteGold/50 text-matteGold px-3 py-1 rounded text-xs tabular-nums">
+          إصدار مرقّم: ٠٣ قطع فقط عالمياً
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 p-7 sm:p-12 flex flex-col justify-between space-y-8">
+        <div class="space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-matteGold border-b border-matteGold/20 pb-3">
+            <span>القطعة رقم ٠٣ · كوتور العروس الإمبراطورية</span>
+            <span class="tabular-nums font-bold">★ 5.0 (تقييم النخبة)</span>
+          </div>
+
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-ivory">
+            كوتور العروس "السيادة الملكية" باللؤلؤ الطبيعي ودانتيل كاليه
+          </h2>
+
+          <p class="text-royalBeige/80 text-sm sm:text-base leading-relaxed">
+            درة تاج أتيليه VoltEdge للعروس التي تنشد إطلالة تاريخية؛ يجمع هذا الفستان بين حرير الميكادو الثقيل ودانتيل كاليه الفرنسي المعتق، مع ذيل كاتدرائي بطول ٤ أمتار مرصع بلآلئ المياه العذبة الطبيعية.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-3">
+            <div class="p-3.5 rounded-xl bg-obsidian/70 border border-matteGold/25">
+              <p class="text-[11px] text-matteGold">ساعات العمل اليدوي</p>
+              <p class="font-display text-xl font-bold text-ivory mt-0.5 tabular-nums">٤٨٠ ساعة تطريز</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-obsidian/70 border border-matteGold/25">
+              <p class="text-[11px] text-matteGold">مصدر الأقمشة</p>
+              <p class="font-display text-xl font-bold text-ivory mt-0.5">دانتيل كاليه — فرنسا</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-obsidian/70 border border-matteGold/25">
+              <p class="text-[11px] text-matteGold">المرفقات الملكية</p>
+              <p class="font-display text-xl font-bold text-ivory mt-0.5">شامل الطرحة الكاتدرائية</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-matteGold/25 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+          <div>
+            <span class="block text-xs text-royalBeige/60">السعر الشامل للتفصيل الخاص والشحن المؤمّن:</span>
+            <span class="tabular-nums text-3xl font-bold text-matteGold">34,000 <small class="text-sm font-normal text-ivory">ج.م</small></span>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onclick="addToCart('excl-3', 'كوتور العروس السيادة الملكية (إصدار محدود)', 34000, '/images/exclusive-3.jfif', 'المجموعة الحصرية')"
+              class="px-7 py-3.5 rounded-lg bg-matteGold hover:bg-goldHover text-espresso font-bold text-sm transition-colors shadow-lg whitespace-nowrap"
+            >
+              أضيفي للسلة الآن
+            </button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- القطعة 4 -->
+    <article class="gold-border-glow bg-obsidianCard rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+      <div class="lg:col-span-5 relative aspect-[3/4] lg:aspect-auto bg-espresso overflow-hidden group">
+        <img
+          src="/images/exclusive-4.jfif"
+          alt="قفطان وكوتور صحارى الذهب العربي المطرز بالزري الملكي — إصدار محدود"
+          referrerPolicy="no-referrer"
+          class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+        />
+        <div class="absolute top-4 right-4 bg-matteGold text-espresso px-4 py-1.5 rounded font-bold text-xs shadow-lg flex items-center gap-1.5">
+          <span>★</span>
+          <span>Limited Edition · إصدار محدود</span>
+        </div>
+        <div class="absolute bottom-4 right-4 bg-obsidian/90 border border-matteGold/50 text-matteGold px-3 py-1 rounded text-xs tabular-nums">
+          إصدار مرقّم: ٠٦ قطع فقط عالمياً
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 p-7 sm:p-12 flex flex-col justify-between space-y-8">
+        <div class="space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-matteGold border-b border-matteGold/20 pb-3">
+            <span>القطعة رقم ٠٤ · أرشيف التراث العربي المعاصر</span>
+            <span class="tabular-nums font-bold">★ 5.0 (تقييم النخبة)</span>
+          </div>
+
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-ivory">
+            فستان وكاب "صحارى الذهب" بتطريز الزري الملكي والحرير العاجي
+          </h2>
+
+          <p class="text-royalBeige/80 text-sm sm:text-base leading-relaxed">
+            تصميم يحتفي بالهوية العربية الملكية بأسلوب الهوت كوتور المعاصر؛ منسوج من الحرير العاجي الخالص مع أكمام جناحية مطرزة بنقوش هندسية مستوحاة من العمارة التراثية بخيوط الزري واللؤلؤ.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-3">
+            <div class="p-3.5 rounded-xl bg-obsidian/70 border border-matteGold/25">
+              <p class="text-[11px] text-matteGold">ساعات العمل اليدوي</p>
+              <p class="font-display text-xl font-bold text-ivory mt-0.5 tabular-nums">٣١٠ ساعات تطريز</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-obsidian/70 border border-matteGold/25">
+              <p class="text-[11px] text-matteGold">مصدر الأقمشة</p>
+              <p class="font-display text-xl font-bold text-ivory mt-0.5">حرير طبيعي + قصب ذهبي</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-obsidian/70 border border-matteGold/25">
+              <p class="text-[11px] text-matteGold">شهادة الأصالة</p>
+              <p class="font-display text-xl font-bold text-ivory mt-0.5">مرقّمة ومختومة</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-matteGold/25 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+          <div>
+            <span class="block text-xs text-royalBeige/60">السعر الشامل للتفصيل الخاص والشحن المؤمّن:</span>
+            <span class="tabular-nums text-3xl font-bold text-matteGold">25,900 <small class="text-sm font-normal text-ivory">ج.م</small></span>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onclick="addToCart('excl-4', 'فستان وكاب صحارى الذهب (إصدار محدود)', 25900, '/images/exclusive-4.jfif', 'المجموعة الحصرية')"
+              class="px-7 py-3.5 rounded-lg bg-matteGold hover:bg-goldHover text-espresso font-bold text-sm transition-colors shadow-lg whitespace-nowrap"
+            >
+              أضيفي للسلة الآن
+            </button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- FOOTER موحد -->
+  <footer class="bg-espresso text-royalBeige pt-16 pb-10 border-t-2 border-matteGold/50">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-royalBeige/15">
+        <div class="space-y-4">
+          <a href="index.html" dir="ltr" class="inline-block font-display text-2xl font-bold tracking-wider text-ivory">
+            VoltEdge <span class="text-matteGold font-normal italic">Atelier</span>
+          </a>
+          <p class="text-sm text-royalBeige/75 leading-relaxed">
+            أتيليه متخصص في تصميم وتنفيذ فساتين السهرة والزفاف الملكية والإكسسوارات الفاخرة، بمعايير عالمية تليق بالمرأة العربية.
+          </p>
+          <p class="text-xs text-matteGold">الرياض — حي العليا، طريق الملك فهد · جناح الكوتور الخاص</p>
+        </div>
+
+        <div>
+          <h4 class="font-display text-lg font-bold text-ivory mb-4">روابط سريعة</h4>
+          <ul class="space-y-2.5 text-sm text-royalBeige/80">
+            <li><a href="index.html" class="hover:text-matteGold transition-colors">الصفحة الرئيسية</a></li>
+            <li><a href="evening-dresses.html" class="hover:text-matteGold transition-colors">فساتين السهرة</a></li>
+            <li><a href="wedding-bridal.html" class="hover:text-matteGold transition-colors">زفاف وعرائس (حجز استشارة)</a></li>
+            <li><a href="accessories.html" class="hover:text-matteGold transition-colors">إكسسوارات وتيجان ملكية</a></li>
+            <li><a href="exclusive-collection.html" class="text-matteGold font-bold">المجموعة الحصرية Limited Edition</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-display text-lg font-bold text-ivory mb-4">خدمات الضيافة والتفصيل</h4>
+          <ul class="space-y-2.5 text-sm text-royalBeige/80">
+            <li>تفصيل خاص حسب المقاس الشخصي</li>
+            <li>جلسات بروفة خاصة في جناح العرائس</li>
+            <li>شحن مؤمّن ومجاني لكافة مدن المملكة والخليج</li>
+            <li>ضمان جودة الأقمشة والتطريز اليدوي</li>
+          </ul>
+        </div>
+
+        <div class="space-y-5">
+          <div>
+            <h4 class="font-display text-lg font-bold text-ivory mb-3">تواصلي معنا</h4>
+            <div class="flex items-center gap-3">
+              <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="إنستغرام" class="w-10 h-10 rounded-lg bg-royalBeige/10 hover:bg-matteGold hover:text-espresso flex items-center justify-center transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+              <a href="https://x.com" target="_blank" rel="noreferrer" aria-label="منصة إكس" class="w-10 h-10 rounded-lg bg-royalBeige/10 hover:bg-matteGold hover:text-espresso flex items-center justify-center transition-colors">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+              <a href="https://snapchat.com" target="_blank" rel="noreferrer" aria-label="سناب شات" class="w-10 h-10 rounded-lg bg-royalBeige/10 hover:bg-matteGold hover:text-espresso flex items-center justify-center transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2c2.8 0 5.1 2.1 5.4 4.9.1.8-.1 1.8-.2 2.4.3.2.8.4 1.3.5.5.1.8.5.7.9-.1.4-.5.7-1.1.9-.6.2-1.2.4-1.4.8-.2.4.4 1.8 1.9 2.8.5.3.7.8.4 1.2-.3.4-1.1.7-2.2.8-.2.4-.4 1-.7 1.3-.3.3-.8.3-1.4.1-.6-.1-1.3-.3-2.1-.3-.8 0-1.5.2-2.1.3-.6.2-1.1.2-1.4-.1-.3-.3-.5-.9-.7-1.3-1.1-.1-1.9-.4-2.2-.8-.3-.4-.1-.9.4-1.2 1.5-1 2.1-2.4 1.9-2.8-.2-.4-.8-.6-1.4-.8-.6-.2-1-.5-1.1-.9-.1-.4.2-.8.7-.9.5-.1 1-.3 1.3-.5-.1-.6-.3-1.6-.2-2.4C6.9 4.1 9.2 2 12 2z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <p class="text-xs text-royalBeige/60 mb-2.5">وسائل الدفع الآمنة المعتمدة</p>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="px-3 py-1.5 rounded bg-ivory text-espresso font-bold text-xs tracking-wide flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-matteGold"></span>
+                ميزة Meeza
+              </span>
+              <span class="px-3 py-1.5 rounded bg-ivory text-espresso font-bold text-xs tracking-wide" dir="ltr"> Pay</span>
+              <span class="px-3 py-1.5 rounded bg-ivory text-[#1A1F71] font-extrabold italic text-xs tracking-wider" dir="ltr">VISA</span>
+              <span class="px-2.5 py-1.5 rounded bg-ivory text-espresso font-bold text-xs flex items-center gap-1" dir="ltr">
+                <span class="inline-block w-3 h-3 rounded-full bg-[#EB001B]"></span>
+                <span class="inline-block w-3 h-3 rounded-full bg-[#F79E1B] -ml-2"></span>
+                <span class="ml-1 text-[10px]">Mastercard</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-royalBeige/60 gap-4">
+        <p>© ٢٠٢٦ VoltEdge Atelier (فولت إيدج أتيليه). جميع الحقوق محفوظة.</p>
+        <p>صُمم بعناية ليعكس أرقى معايير الأناقة العربية</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- درج السلة الجانبي + الإشعار -->
+  <div id="cart-drawer-backdrop" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs hidden opacity-0 transition-opacity duration-200"></div>
+  <aside id="cart-drawer" aria-label="سلة التسوق" class="fixed top-0 right-0 z-50 h-full w-full max-w-md bg-ivory text-espresso shadow-2xl border-l border-royalBronze/20 translate-x-full transition-transform duration-200 flex flex-col">
+    <div class="p-6 border-b border-royalBronze/15 flex items-center justify-between bg-royalBeige/50">
+      <div>
+        <h3 class="font-display text-2xl font-bold text-espresso">حقيبة التسوق الملكية</h3>
+        <p class="text-xs text-mutedCocoa mt-0.5">شحن مؤمّن ومجاني لكافة الطلبات داخل المملكة</p>
+      </div>
+      <button id="close-cart-btn" type="button" aria-label="إغلاق السلة" class="p-2 rounded-lg hover:bg-royalBeige text-espresso transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
+    <div class="p-6 border-t border-royalBronze/15 bg-royalBeige/60 space-y-4">
+      <div class="flex items-center justify-between text-base font-bold">
+        <span>الإجمالي التقديري:</span>
+        <span id="cart-total-price" class="tabular-nums text-xl text-royalBronze">0 ج.م</span>
+      </div>
+      <button id="checkout-btn" type="button" class="w-full py-3.5 px-6 rounded-lg bg-espresso hover:bg-royalBronze text-ivory font-bold text-sm transition-colors">
+        إتمام الطلب وتأكيد الحجز
+      </button>
+      <div id="checkout-feedback" class="hidden p-3.5 rounded-lg bg-matteGold/20 border border-matteGold text-espresso text-xs leading-relaxed"></div>
+    </div>
+  </aside>
+
+  <div id="toast-notification" class="fixed bottom-6 left-6 z-50 max-w-sm bg-matteGold text-espresso border border-ivory px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-24 opacity-0 pointer-events-none transition-all duration-200">
+    <span class="w-6 h-6 rounded-full bg-espresso text-matteGold flex items-center justify-center font-bold text-xs shrink-0">✓</span>
+    <p id="toast-message" class="text-xs sm:text-sm font-bold"></p>
+  </div>
+
+  <!-- أكواد Vanilla JS -->
+  <script>
+    const CART_STORAGE_KEY = 'voltedge_atelier_cart_v1';
+
+    function formatEGP(amount) {
+      return Number(amount).toLocaleString('ar-EG') + ' ج.م';
+    }
+
+    function getCart() {
+      try {
+        const raw = localStorage.getItem(CART_STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveCart(cart) {
+      try {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+      } catch (e) {}
+      updateCartUI();
+    }
+
+    function addToCart(id, name, price, image, category) {
+      const cart = getCart();
+      const existing = cart.find(item => item.id === id);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ id, name, price: Number(price), image, category, qty: 1 });
+      }
+      saveCart(cart);
+      const badge = document.getElementById('cart-count-badge');
+      if (badge) {
+        badge.classList.add('scale-125');
+        setTimeout(() => badge.classList.remove('scale-125'), 220);
+      }
+      showToast('تمت إضافة "' + name + '" إلى حقيبة التسوق');
+    }
+
+    function changeQty(id, delta) {
+      let cart = getCart();
+      const target = cart.find(item => item.id === id);
+      if (!target) return;
+      target.qty += delta;
+      if (target.qty <= 0) {
+        cart = cart.filter(item => item.id !== id);
+      }
+      saveCart(cart);
+    }
+
+    function updateCartUI() {
+      const cart = getCart();
+      const totalCount = cart.reduce((acc, item) => acc + item.qty, 0);
+      const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+
+      const badge = document.getElementById('cart-count-badge');
+      if (badge) badge.textContent = totalCount;
+
+      const totalEl = document.getElementById('cart-total-price');
+      if (totalEl) totalEl.textContent = formatEGP(totalPrice);
+
+      const container = document.getElementById('cart-items-container');
+      if (!container) return;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-16 space-y-3">
+            <p class="font-display text-xl text-mutedCocoa">حقيبة التسوق فارغة حالياً</p>
+            <p class="text-xs text-mutedCocoa/80">استكشفي تصاميم الأتيليه وأضيفي قطعكِ المفضلة</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = cart.map(item => `
+        <div class="flex items-center gap-4 p-3 rounded-xl bg-royalBeige/70 border border-royalBronze/15">
+          <img src="${item.image}" alt="${item.name}" referrerPolicy="no-referrer" class="w-16 h-20 object-cover rounded-lg bg-royalBeige shrink-0" />
+          <div class="flex-1 min-w-0">
+            <p class="text-[11px] text-royalBronze">${item.category}</p>
+            <h4 class="font-display text-base font-bold text-espresso truncate">${item.name}</h4>
+            <p class="tabular-nums text-xs font-bold text-espresso mt-1">${formatEGP(item.price)}</p>
+          </div>
+          <div class="flex items-center gap-1.5 bg-ivory px-2 py-1 rounded-lg border border-royalBronze/20">
+            <button type="button" onclick="changeQty('${item.id}', -1)" class="w-6 h-6 text-xs font-bold hover:text-royalBronze">-</button>
+            <span class="tabular-nums text-xs font-bold px-1">${item.qty}</span>
+            <button type="button" onclick="changeQty('${item.id}', 1)" class="w-6 h-6 text-xs font-bold hover:text-royalBronze">+</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    let toastTimer = null;
+    function showToast(message) {
+      const toast = document.getElementById('toast-notification');
+      const msgEl = document.getElementById('toast-message');
+      if (!toast || !msgEl) return;
+      msgEl.textContent = message;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 2800);
+    }
+
+    const openCartBtn = document.getElementById('open-cart-btn');
+    const closeCartBtn = document.getElementById('close-cart-btn');
+    const cartDrawer = document.getElementById('cart-drawer');
+    const cartBackdrop = document.getElementById('cart-drawer-backdrop');
+
+    function openCartDrawer() {
+      cartBackdrop.classList.remove('hidden');
+      setTimeout(() => {
+        cartBackdrop.classList.remove('opacity-0');
+        cartDrawer.classList.remove('translate-x-full');
+      }, 10);
+    }
+
+    function closeCartDrawer() {
+      cartBackdrop.classList.add('opacity-0');
+      cartDrawer.classList.add('translate-x-full');
+      setTimeout(() => cartBackdrop.classList.add('hidden'), 200);
+    }
+
+    if (openCartBtn) openCartBtn.addEventListener('click', openCartDrawer);
+    if (closeCartBtn) closeCartBtn.addEventListener('click', closeCartDrawer);
+    if (cartBackdrop) cartBackdrop.addEventListener('click', closeCartDrawer);
+
+    const checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener('click', () => {
+        const cart = getCart();
+        const feedback = document.getElementById('checkout-feedback');
+        if (cart.length === 0) {
+          feedback.classList.remove('hidden');
+          feedback.textContent = 'الرجاء إضافة قطعة واحدة على الأقل قبل إتمام الطلب.';
+          return;
+        }
+        const orderNum = Math.floor(10000 + Math.random() * 90000);
+        saveCart([]);
+        feedback.classList.remove('hidden');
+        feedback.innerHTML = '<strong>تم استلام طلبكِ بنجاح رقم #' + orderNum + '</strong><br/>سيتواصل معكِ فريق خدمة عملاء الأتيليه خلال ساعة لتأكيد المقاسات وموعد التسليم.';
+      });
+    }
+
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', updateCartUI);
+  </script>
+</body>
+</html>

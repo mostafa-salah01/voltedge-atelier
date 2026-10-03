@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VoltEdge Atelier | فولت إيدج أتيليه — للأزياء الراقية وفساتين السهرة والزفاف</title>
+  <meta name="description" content="متجر إلكتروني فاخر وأتيليه راقٍ لفساتين السهرة والزفاف والإكسسوارات الملكية والمجموعات الحصرية بتصميم عربي أصيل." />
+  <meta property="og:title" content="VoltEdge Atelier | فولت إيدج أتيليه" />
+  <meta property="og:description" content="متجر إلكتروني فاخر وأتيليه راقٍ لفساتين السهرة والزفاف والإكسسوارات الملكية والمجموعات الحصرية بتصميم عربي أصيل." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- الخطوط العربية الفاخرة من Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- استدعاء Tailwind CSS عبر CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ivory: '#FDFBF7',
+            royalBeige: '#F5F0EB',
+            matteGold: '#D4AF37',
+            goldHover: '#B89428',
+            royalBronze: '#8D6E63',
+            espresso: '#1E1916',
+            mutedCocoa: '#6E5D54'
+          },
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif'],
+            amiri: ['Amiri', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #FDFBF7;
+      color: #1E1916;
+      overflow-x: hidden;
+    }
+    .font-display {
+      font-family: 'Amiri', serif;
+    }
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+    .luxury-card {
+      transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .luxury-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 38px -15px rgba(30, 25, 22, 0.09);
+    }
+    .nav-link-active {
+      color: #8D6E63;
+      border-bottom: 2px solid #D4AF37;
+      font-weight: 700;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F5F0EB;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D4AF37;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="bg-ivory text-espresso antialiased selection:bg-matteGold/20 selection:text-espresso">
+
+  <!-- =====================================================================
+       HEADER موحد: قائمة التنقل على اليمين، وشعار VoltEdge Atelier على اليسار
+       ===================================================================== -->
+  <header class="sticky top-0 z-40 bg-ivory/95 backdrop-blur-md border-b border-royalBronze/15">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-8 h-20 flex items-center justify-between gap-4">
+      
+      <!-- الجانب الأيمن: زر القائمة للموبايل + روابط التنقل الرئيسية + زر السلة -->
+      <div class="flex items-center gap-3 lg:gap-7">
+        <button id="mobile-menu-btn" type="button" aria-label="فتح قائمة التنقل" class="lg:hidden p-2.5 rounded-lg border border-royalBronze/20 text-espresso hover:bg-royalBeige transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+        <nav aria-label="التنقل الرئيسي" class="hidden lg:flex items-center gap-6 text-[15px] font-medium text-espresso/85">
+          <a href="index.html" class="py-1.5 nav-link-active whitespace-nowrap transition-colors">الرئيسية</a>
+          <a href="evening-dresses.html" class="py-1.5 hover:text-royalBronze whitespace-nowrap transition-colors">فساتين سهرة</a>
+          <a href="wedding-bridal.html" class="py-1.5 hover:text-royalBronze whitespace-nowrap transition-colors">زفاف وعرائس</a>
+          <a href="accessories.html" class="py-1.5 hover:text-royalBronze whitespace-nowrap transition-colors">إكسسوارات</a>
+          <a href="exclusive-collection.html" class="py-1.5 text-royalBronze hover:text-matteGold font-semibold whitespace-nowrap transition-colors">المجموعة الحصرية</a>
+        </nav>
+
+        <button id="open-cart-btn" type="button" class="relative inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-royalBeige hover:bg-matteGold/15 border border-matteGold/30 text-espresso text-sm font-medium transition-colors whitespace-nowrap">
+          <svg class="w-4 h-4 text-royalBronze" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span>السلة</span>
+          <span id="cart-count-badge" class="tabular-nums inline-flex items-center justify-center min-w-[22px] h-[22px] px-1.5 text-xs font-bold rounded-full bg-matteGold text-espresso transition-transform duration-200">0</span>
+        </button>
+      </div>
+
+      <!-- الجانب الأيسر: شعار VoltEdge Atelier -->
+      <a href="index.html" dir="ltr" class="font-display text-2xl sm:text-3xl font-bold tracking-wider text-espresso hover:text-royalBronze transition-colors whitespace-nowrap">
+        VoltEdge <span class="text-matteGold font-normal italic">Atelier</span>
+      </a>
+
+    </div>
+
+    <!-- قائمة الموبايل -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-ivory border-t border-royalBronze/15 px-6 py-5 space-y-3 shadow-lg">
+      <nav class="flex flex-col space-y-2.5 text-base font-medium">
+        <a href="index.html" class="py-2 px-3 rounded-lg bg-royalBeige text-royalBronze font-bold">الرئيسية</a>
+        <a href="evening-dresses.html" class="py-2 px-3 rounded-lg hover:bg-royalBeige transition-colors">فساتين سهرة</a>
+        <a href="wedding-bridal.html" class="py-2 px-3 rounded-lg hover:bg-royalBeige transition-colors">زفاف وعرائس</a>
+        <a href="accessories.html" class="py-2 px-3 rounded-lg hover:bg-royalBeige transition-colors">إكسسوارات</a>
+        <a href="exclusive-collection.html" class="py-2 px-3 rounded-lg text-royalBronze font-semibold hover:bg-royalBeige transition-colors">المجموعة الحصرية</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       1. قسم HERO بملء الشاشة بصورة خلفية وعنوان رئيسي وزر CTA
+       ===================================================================== -->
+  <section class="relative min-h-[86vh] flex items-center overflow-hidden bg-espresso">
+    <img
+      src="/images/hero-atelier.jfif"
+      alt="واجهة أتيليه فولت إيدج الفاخر تعرض فستان سهرة ملكي مطرز بالذهب"
+      referrerPolicy="no-referrer"
+      class="absolute inset-0 w-full h-full object-cover object-center scale-105 transition-transform duration-1000"
+    />
+    <div class="absolute inset-0 bg-gradient-to-l from-espresso/90 via-espresso/65 to-espresso/30"></div>
+
+    <div class="relative z-10 max-w-[1380px] mx-auto px-4 sm:px-8 py-20 w-full">
+      <div class="max-w-2xl space-y-6">
+        <p class="text-matteGold text-sm sm:text-base font-medium tracking-wide">
+          دار الأزياء الراقية · الرياض — باريس · مجموعة ٢٠٢٦
+        </p>
+        <h1 class="font-display text-4xl sm:text-6xl lg:text-[64px] text-ivory font-bold leading-[1.18]" style="text-wrap: balance;">
+          فخامة تُحاكي الضوء، وتفاصيل تُنسج لليلة لا تُنسى
+        </h1>
+        <p class="text-royalBeige/90 text-base sm:text-lg leading-relaxed max-w-xl font-light">
+          في أتيليه <span class="text-matteGold font-medium">VoltEdge</span> نبتكر فساتين السهرة والزفاف بحرفية التطريز اليدوي وأجود أقمشة الحرير التوت والـ Mikado الملكي، لتتألقي بحضور استثنائي.
+        </p>
+        <div class="pt-4 flex flex-wrap items-center gap-4">
+          <a href="exclusive-collection.html" class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-lg bg-matteGold hover:bg-goldHover text-espresso font-bold text-base transition-all shadow-lg whitespace-nowrap">
+            <span>اكتشفي المجموعة الحصرية</span>
+            <svg class="w-5 h-5 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+          <a href="evening-dresses.html" class="inline-flex items-center justify-center px-7 py-4 rounded-lg border border-ivory/40 hover:border-matteGold text-ivory hover:bg-ivory/10 font-medium text-base transition-colors whitespace-nowrap">
+            تصفحي فساتين السهرة
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       2. قسم "مختارات مميزة" (4 كروت من كل الأقسام الرئيسية)
+       ===================================================================== -->
+  <section class="py-20 sm:py-24 max-w-[1380px] mx-auto px-4 sm:px-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 border-b border-royalBronze/15 pb-6">
+      <div>
+        <p class="text-royalBronze text-sm font-medium mb-2">إبداعات مختارة بعناية من كافة الأقسام</p>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-espresso">مختارات الأتيليه المميزة</h2>
+      </div>
+      <a href="evening-dresses.html" class="inline-flex items-center gap-2 text-sm font-semibold text-royalBronze hover:text-matteGold transition-colors whitespace-nowrap">
+        <span>عرض كافة التصاميم</span>
+        <span aria-hidden="true">←</span>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
+      
+      <!-- كرت 1: فساتين السهرة -->
+      <article class="luxury-card bg-royalBeige/60 rounded-xl overflow-hidden border border-royalBronze/15 flex flex-col">
+        <div class="relative aspect-[3/4] bg-royalBeige overflow-hidden group">
+          <img
+            src="/images/prod-evening.jfif"
+            alt="فستان سهرة شامبين مطرز بالكريستال وخيوط الذهب"
+            referrerPolicy="no-referrer"
+            class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+          />
+          <div class="absolute top-3 right-3 bg-ivory/90 backdrop-blur-sm px-3 py-1 rounded text-xs font-medium text-espresso">
+            فساتين سهرة
+          </div>
+          <button
+            type="button"
+            onclick="openQuickView('feat-1', 'فستان سهرة أوريليا شامبين', 5400, '/images/prod-evening.jfif', 'فساتين سهرة', 'حرير طبيعي ١٠٠٪ مع تطريز يدوي بالكريستال النمساوي وخيوط القصب الذهبية.')"
+            class="absolute bottom-3 left-3 right-3 py-2.5 bg-espresso/85 hover:bg-espresso text-ivory text-xs font-medium rounded opacity-0 group-hover:opacity-100 transition-opacity text-center"
+          >
+            معاينة سريعة للقطعة
+          </button>
+        </div>
+        <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between text-xs text-mutedCocoa mb-1.5">
+              <span>حرير شامبين · تطريز يدوي</span>
+              <span class="tabular-nums text-matteGold font-bold">★ 4.9</span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-espresso">فستان سهرة أوريليا شامبين</h3>
+          </div>
+          <div class="pt-3 border-t border-royalBronze/15 flex items-center justify-between gap-2">
+            <span class="tabular-nums text-lg font-bold text-espresso">5,400 <small class="text-xs font-normal text-mutedCocoa">ج.م</small></span>
+            <button
+              type="button"
+              onclick="addToCart('feat-1', 'فستان سهرة أوريليا شامبين', 5400, '/images/prod-evening.jfif', 'فساتين سهرة')"
+              class="px-4 py-2 rounded-lg bg-espresso hover:bg-royalBronze text-ivory text-xs font-semibold transition-colors whitespace-nowrap"
+            >
+              أضيفي للسلة
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- كرت 2: زفاف وعرائس -->
+      <article class="luxury-card bg-royalBeige/60 rounded-xl overflow-hidden border border-royalBronze/15 flex flex-col">
+        <div class="relative aspect-[3/4] bg-royalBeige overflow-hidden group">
+          <img
+            src="/images/prod-wedding.jfif"
+            alt="فستان زفاف ملكي من حرير الميكادو ودانتيل شانتيلي الفرنسي"
+            referrerPolicy="no-referrer"
+            class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+          />
+          <div class="absolute top-3 right-3 bg-ivory/90 backdrop-blur-sm px-3 py-1 rounded text-xs font-medium text-espresso">
+            زفاف وعرائس
+          </div>
+          <button
+            type="button"
+            onclick="openQuickView('feat-2', 'فستان زفاف بلقيس الملكي', 14800, '/images/prod-wedding.jfif', 'زفاف وعرائس', 'فستان زفاف بقصة كاتدرائية مهيبة من حرير الميكادو الإيطالي ودانتيل شانتيلي الفرنسي المرصع باللؤلؤ.')"
+            class="absolute bottom-3 left-3 right-3 py-2.5 bg-espresso/85 hover:bg-espresso text-ivory text-xs font-medium rounded opacity-0 group-hover:opacity-100 transition-opacity text-center"
+          >
+            معاينة سريعة للقطعة
+          </button>
+        </div>
+        <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between text-xs text-mutedCocoa mb-1.5">
+              <span>ميكادو إيطالي · ذيل ملكي</span>
+              <span class="tabular-nums text-matteGold font-bold">★ 5.0</span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-espresso">فستان زفاف بلقيس الملكي</h3>
+          </div>
+          <div class="pt-3 border-t border-royalBronze/15 flex items-center justify-between gap-2">
+            <span class="tabular-nums text-lg font-bold text-espresso">14,800 <small class="text-xs font-normal text-mutedCocoa">ج.م</small></span>
+            <button
+              type="button"
+              onclick="addToCart('feat-2', 'فستان زفاف بلقيس الملكي', 14800, '/images/prod-wedding.jfif', 'زفاف وعرائس')"
+              class="px-4 py-2 rounded-lg bg-espresso hover:bg-royalBronze text-ivory text-xs font-semibold transition-colors whitespace-nowrap"
+            >
+              أضيفي للسلة
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- كرت 3: إكسسوارات -->
+      <article class="luxury-card bg-royalBeige/60 rounded-xl overflow-hidden border border-royalBronze/15 flex flex-col">
+        <div class="relative aspect-[3/4] bg-royalBeige overflow-hidden group">
+          <img
+            src="/images/prod-accessories.jfif"
+            alt="تاج عروس ملكي مرصع بالزركون السويسري واللؤلؤ الطبيعي"
+            referrerPolicy="no-referrer"
+            class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+          />
+          <div class="absolute top-3 right-3 bg-ivory/90 backdrop-blur-sm px-3 py-1 rounded text-xs font-medium text-espresso">
+            إكسسوارات
+          </div>
+          <button
+            type="button"
+            onclick="openQuickView('feat-3', 'تاج الأميرة لومينار المرصع', 1850, '/images/prod-accessories.jfif', 'إكسسوارات', 'تاج ملكي مطلي بالذهب الأبيض عيار ١٨ ومرصع يدوياً بأحجار الزركون النقي واللؤلؤ الطبيعي.')"
+            class="absolute bottom-3 left-3 right-3 py-2.5 bg-espresso/85 hover:bg-espresso text-ivory text-xs font-medium rounded opacity-0 group-hover:opacity-100 transition-opacity text-center"
+          >
+            معاينة سريعة للقطعة
+          </button>
+        </div>
+        <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between text-xs text-mutedCocoa mb-1.5">
+              <span>طلاء ذهب ١٨ · لؤلؤ طبيعي</span>
+              <span class="tabular-nums text-matteGold font-bold">★ 4.8</span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-espresso">تاج الأميرة لومينار المرصع</h3>
+          </div>
+          <div class="pt-3 border-t border-royalBronze/15 flex items-center justify-between gap-2">
+            <span class="tabular-nums text-lg font-bold text-espresso">1,850 <small class="text-xs font-normal text-mutedCocoa">ج.م</small></span>
+            <button
+              type="button"
+              onclick="addToCart('feat-3', 'تاج الأميرة لومينار المرصع', 1850, '/images/prod-accessories.jfif', 'إكسسوارات')"
+              class="px-4 py-2 rounded-lg bg-espresso hover:bg-royalBronze text-ivory text-xs font-semibold transition-colors whitespace-nowrap"
+            >
+              أضيفي للسلة
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- كرت 4: المجموعة الحصرية -->
+      <article class="luxury-card bg-espresso text-ivory rounded-xl overflow-hidden border border-matteGold/40 flex flex-col">
+        <div class="relative aspect-[3/4] bg-espresso overflow-hidden group">
+          <img
+            src="/images/prod-exclusive.jfif"
+            alt="فستان كوتور مخملي برونزي مطرز بخيوط الذهب عيار 24 من المجموعة الحصرية"
+            referrerPolicy="no-referrer"
+            class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+          />
+          <div class="absolute top-3 right-3 bg-matteGold px-3 py-1 rounded text-xs font-bold text-espresso">
+            إصدار محدود
+          </div>
+          <button
+            type="button"
+            onclick="openQuickView('feat-4', 'كوتور إمبريال بالمخمل والذهب', 22500, '/images/prod-exclusive.jfif', 'المجموعة الحصرية', 'تحفة فنية بإصدار محدود (٧ قطع فقط) من المخمل الحريري مع تطريز يدوي استغرق ٣٤٠ ساعة عمل.')"
+            class="absolute bottom-3 left-3 right-3 py-2.5 bg-matteGold hover:bg-goldHover text-espresso text-xs font-bold rounded opacity-0 group-hover:opacity-100 transition-opacity text-center"
+          >
+            معاينة سريعة للقطعة
+          </button>
+        </div>
+        <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between text-xs text-matteGold/90 mb-1.5">
+              <span>المجموعة الحصرية · ٧ قطع فقط</span>
+              <span class="tabular-nums text-matteGold font-bold">★ 5.0</span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-ivory">كوتور إمبريال بالمخمل والذهب</h3>
+          </div>
+          <div class="pt-3 border-t border-matteGold/25 flex items-center justify-between gap-2">
+            <span class="tabular-nums text-lg font-bold text-matteGold">22,500 <small class="text-xs font-normal text-royalBeige/80">ج.م</small></span>
+            <button
+              type="button"
+              onclick="addToCart('feat-4', 'كوتور إمبريال بالمخمل والذهب', 22500, '/images/prod-exclusive.jfif', 'المجموعة الحصرية')"
+              class="px-4 py-2 rounded-lg bg-matteGold hover:bg-goldHover text-espresso text-xs font-bold transition-colors whitespace-nowrap"
+            >
+              أضيفي للسلة
+            </button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       3. قسم "عن الأتيليه" مختصر
+       ===================================================================== -->
+  <section class="bg-royalBeige py-20 sm:py-24 border-y border-royalBronze/15">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <p class="text-royalBronze text-sm font-semibold tracking-wide">عن الأتيليه · فلسفة الأناقة الخالدة</p>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-espresso leading-tight">
+            حيث تلتقي أصالة الذوق العربي بدقة الهوت كوتور الباريسي
+          </h2>
+          <p class="text-mutedCocoa text-base sm:text-lg leading-relaxed">
+            تأسس <strong class="text-espresso font-semibold">VoltEdge Atelier</strong> ليكون الوجهة الأولى للسيدة الباحثة عن التفرد في أبهى مناسباتها. يتم تنفيذ كل فستان داخل معاملنا الخاصة على يد نخبة من أمهر الحرفيين ومصممي الباترون، باستخدام أقمشة مستوردة خصيصاً من ليون وميلانو.
+          </p>
+          <p class="text-mutedCocoa text-base leading-relaxed">
+            سواء كنتِ تبحثين عن فستان سهرة يخطف الأنظار، أو فستان زفاف يُفصّل خصيصاً ليروي قصتكِ، فإننا نضمن لكِ تجربة قياس واستشارة شخصية ترتقي إلى مستوى تطلعاتكِ.
+          </p>
+
+          <div class="pt-4 grid grid-cols-3 gap-6 border-t border-royalBronze/20">
+            <div>
+              <p class="font-display text-3xl sm:text-4xl font-bold text-royalBronze tabular-nums">+320</p>
+              <p class="text-xs sm:text-sm text-mutedCocoa mt-1">ساعة تطريز يدوي لكل فستان زفاف ملكي</p>
+            </div>
+            <div>
+              <p class="font-display text-3xl sm:text-4xl font-bold text-royalBronze tabular-nums">100%</p>
+              <p class="text-xs sm:text-sm text-mutedCocoa mt-1">أقمشة حرير طبيعي ودانتيل فرنسي أصلي</p>
+            </div>
+            <div>
+              <p class="font-display text-3xl sm:text-4xl font-bold text-royalBronze tabular-nums">+1,450</p>
+              <p class="text-xs sm:text-sm text-mutedCocoa mt-1">عروس وسيدة تألقن بتصاميمنا في الخليج</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="relative rounded-2xl overflow-hidden border border-matteGold/30 shadow-xl aspect-[4/3] bg-espresso">
+            <img
+              src="/images/atelier-story.jfif"
+              alt="ركن الخياطة الراقية والتفصيل اليدوي داخل أتيليه فولت إيدج"
+              referrerPolicy="no-referrer"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-espresso/90 via-espresso/50 to-transparent p-6">
+              <p class="font-display text-lg text-ivory italic">"الأناقة الحقيقية تكمن في التفاصيل التي لا تدركها العين من النظرة الأولى."</p>
+              <p class="text-xs text-matteGold mt-1">— المديرة الإبداعية لدار VoltEdge Atelier</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       4. قسم روابط الأقسام الرئيسية بصور كبيرة وجذابة
+       ===================================================================== -->
+  <section class="py-20 sm:py-24 max-w-[1380px] mx-auto px-4 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="text-royalBronze text-sm font-medium mb-2">تصفحي حسب المناسبة</p>
+      <h2 class="font-display text-3xl sm:text-5xl font-bold text-espresso">أقسام الأتيليه الرئيسية</h2>
+      <p class="text-mutedCocoa text-sm sm:text-base mt-3">
+        أربعة عوالم متكاملة من الفخامة صُممت لتلبي كافة تفاصيل إطلالتكِ الملكية
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- قسم 1: فساتين السهرة -->
+      <a href="evening-dresses.html" class="group relative rounded-2xl overflow-hidden aspect-[16/10] bg-espresso border border-royalBronze/20 flex items-end p-8">
+        <img
+          src="/images/prod-evening.jfif"
+          alt="قسم فساتين السهرة الفاخرة في أتيليه فولت إيدج"
+          referrerPolicy="no-referrer"
+          class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-espresso/90 via-espresso/45 to-transparent"></div>
+        <div class="relative z-10 w-full flex items-end justify-between gap-4">
+          <div>
+            <span class="text-matteGold text-xs font-semibold">٨ تصاميم متوفرة</span>
+            <h3 class="font-display text-3xl sm:text-4xl font-bold text-ivory mt-1">فساتين السهرة</h3>
+            <p class="text-royalBeige/85 text-sm mt-1 max-w-md">قصات انسيابية وتطريزات كريستالية تمنحكِ حضوراً ساحراً في أرقى الأمسيات.</p>
+          </div>
+          <span class="px-5 py-2.5 rounded-lg bg-ivory text-espresso group-hover:bg-matteGold font-semibold text-xs transition-colors whitespace-nowrap">
+            استكشفي القسم ←
+          </span>
+        </div>
+      </a>
+
+      <!-- قسم 2: زفاف وعرائس -->
+      <a href="wedding-bridal.html" class="group relative rounded-2xl overflow-hidden aspect-[16/10] bg-espresso border border-royalBronze/20 flex items-end p-8">
+        <img
+          src="/images/prod-wedding.jfif"
+          alt="قسم فساتين الزفاف والعرائس الملكية في أتيليه فولت إيدج"
+          referrerPolicy="no-referrer"
+          class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-espresso/90 via-espresso/45 to-transparent"></div>
+        <div class="relative z-10 w-full flex items-end justify-between gap-4">
+          <div>
+            <span class="text-matteGold text-xs font-semibold">شامل خدمة استشارة التفصيل الخاص</span>
+            <h3 class="font-display text-3xl sm:text-4xl font-bold text-ivory mt-1">زفاف وعرائس</h3>
+            <p class="text-royalBeige/85 text-sm mt-1 max-w-md">فساتين زفاف ملوكية وطرحات مطرزة باللؤلؤ لليلة العمر المنتظرة.</p>
+          </div>
+          <span class="px-5 py-2.5 rounded-lg bg-ivory text-espresso group-hover:bg-matteGold font-semibold text-xs transition-colors whitespace-nowrap">
+            استكشفي القسم ←
+          </span>
+        </div>
+      </a>
+
+      <!-- قسم 3: إكسسوارات -->
+      <a href="accessories.html" class="group relative rounded-2xl overflow-hidden aspect-[16/10] bg-espresso border border-royalBronze/20 flex items-end p-8">
+        <img
+          src="/images/prod-accessories.jfif"
+          alt="قسم التيجان والمجوهرات وإكسسوارات الشعر الفاخرة"
+          referrerPolicy="no-referrer"
+          class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-espresso/90 via-espresso/45 to-transparent"></div>
+        <div class="relative z-10 w-full flex items-end justify-between gap-4">
+          <div>
+            <span class="text-matteGold text-xs font-semibold">تيجان · مجوهرات · إكسسوارات شعر</span>
+            <h3 class="font-display text-3xl sm:text-4xl font-bold text-ivory mt-1">إكسسوارات ملكية</h3>
+            <p class="text-royalBeige/85 text-sm mt-1 max-w-md">لمسات أخيرة من التيجان المرصعة والأقراط الكريستالية التي تكمل أناقتكِ.</p>
+          </div>
+          <span class="px-5 py-2.5 rounded-lg bg-ivory text-espresso group-hover:bg-matteGold font-semibold text-xs transition-colors whitespace-nowrap">
+            استكشفي القسم ←
+          </span>
+        </div>
+      </a>
+
+      <!-- قسم 4: المجموعة الحصرية -->
+      <a href="exclusive-collection.html" class="group relative rounded-2xl overflow-hidden aspect-[16/10] bg-espresso border-2 border-matteGold/60 flex items-end p-8">
+        <img
+          src="/images/prod-exclusive.jfif"
+          alt="قسم المجموعة الحصرية ذات الإصدار المحدود من فولت إيدج أتيليه"
+          referrerPolicy="no-referrer"
+          class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-espresso/95 via-espresso/55 to-transparent"></div>
+        <div class="relative z-10 w-full flex items-end justify-between gap-4">
+          <div>
+            <span class="text-matteGold text-xs font-bold">إصدار محدود · Limited Edition</span>
+            <h3 class="font-display text-3xl sm:text-4xl font-bold text-matteGold mt-1">المجموعة الحصرية</h3>
+            <p class="text-royalBeige/90 text-sm mt-1 max-w-md">أربع تحف فنية مرقمة ومصنوعة يدوياً لمن تبحث عن التفرد المطلق.</p>
+          </div>
+          <span class="px-5 py-2.5 rounded-lg bg-matteGold text-espresso group-hover:bg-goldHover font-bold text-xs transition-colors whitespace-nowrap">
+            دخول الجناح الخاص ←
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       FOOTER موحد
+       ===================================================================== -->
+  <footer class="bg-espresso text-royalBeige pt-16 pb-10 border-t-2 border-matteGold/40">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-royalBeige/15">
+        
+        <div class="space-y-4">
+          <a href="index.html" dir="ltr" class="inline-block font-display text-2xl font-bold tracking-wider text-ivory">
+            VoltEdge <span class="text-matteGold font-normal italic">Atelier</span>
+          </a>
+          <p class="text-sm text-royalBeige/75 leading-relaxed">
+            أتيليه متخصص في تصميم وتنفيذ فساتين السهرة والزفاف الملكية والإكسسوارات الفاخرة، بمعايير عالمية تليق بالمرأة العربية.
+          </p>
+          <p class="text-xs text-matteGold">الرياض — حي العليا، طريق الملك فهد · جناح الكوتور الخاص</p>
+        </div>
+
+        <div>
+          <h4 class="font-display text-lg font-bold text-ivory mb-4">روابط سريعة</h4>
+          <ul class="space-y-2.5 text-sm text-royalBeige/80">
+            <li><a href="index.html" class="text-matteGold font-bold">الصفحة الرئيسية</a></li>
+            <li><a href="evening-dresses.html" class="hover:text-matteGold transition-colors">فساتين السهرة</a></li>
+            <li><a href="wedding-bridal.html" class="hover:text-matteGold transition-colors">زفاف وعرائس (حجز استشارة)</a></li>
+            <li><a href="accessories.html" class="hover:text-matteGold transition-colors">إكسسوارات وتيجان ملكية</a></li>
+            <li><a href="exclusive-collection.html" class="hover:text-matteGold transition-colors">المجموعة الحصرية Limited Edition</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-display text-lg font-bold text-ivory mb-4">خدمات الضيافة والتفصيل</h4>
+          <ul class="space-y-2.5 text-sm text-royalBeige/80">
+            <li>تفصيل خاص حسب المقاس الشخصي</li>
+            <li>جلسات بروفة خاصة في جناح العرائس</li>
+            <li>شحن مؤمّن ومجاني لكافة مدن المملكة والخليج</li>
+            <li>ضمان جودة الأقمشة والتطريز اليدوي</li>
+          </ul>
+        </div>
+
+        <div class="space-y-5">
+          <div>
+            <h4 class="font-display text-lg font-bold text-ivory mb-3">تواصلي معنا</h4>
+            <div class="flex items-center gap-3">
+              <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="إنستغرام" class="w-10 h-10 rounded-lg bg-royalBeige/10 hover:bg-matteGold hover:text-espresso flex items-center justify-center transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+              <a href="https://x.com" target="_blank" rel="noreferrer" aria-label="منصة إكس" class="w-10 h-10 rounded-lg bg-royalBeige/10 hover:bg-matteGold hover:text-espresso flex items-center justify-center transition-colors">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+              <a href="https://snapchat.com" target="_blank" rel="noreferrer" aria-label="سناب شات" class="w-10 h-10 rounded-lg bg-royalBeige/10 hover:bg-matteGold hover:text-espresso flex items-center justify-center transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2c2.8 0 5.1 2.1 5.4 4.9.1.8-.1 1.8-.2 2.4.3.2.8.4 1.3.5.5.1.8.5.7.9-.1.4-.5.7-1.1.9-.6.2-1.2.4-1.4.8-.2.4.4 1.8 1.9 2.8.5.3.7.8.4 1.2-.3.4-1.1.7-2.2.8-.2.4-.4 1-.7 1.3-.3.3-.8.3-1.4.1-.6-.1-1.3-.3-2.1-.3-.8 0-1.5.2-2.1.3-.6.2-1.1.2-1.4-.1-.3-.3-.5-.9-.7-1.3-1.1-.1-1.9-.4-2.2-.8-.3-.4-.1-.9.4-1.2 1.5-1 2.1-2.4 1.9-2.8-.2-.4-.8-.6-1.4-.8-.6-.2-1-.5-1.1-.9-.1-.4.2-.8.7-.9.5-.1 1-.3 1.3-.5-.1-.6-.3-1.6-.2-2.4C6.9 4.1 9.2 2 12 2z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <p class="text-xs text-royalBeige/60 mb-2.5">وسائل الدفع الآمنة المعتمدة</p>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="px-3 py-1.5 rounded bg-ivory text-espresso font-bold text-xs tracking-wide flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-matteGold"></span>
+                ميزة Meeza
+              </span>
+              <span class="px-3 py-1.5 rounded bg-ivory text-espresso font-bold text-xs tracking-wide" dir="ltr"> Pay</span>
+              <span class="px-3 py-1.5 rounded bg-ivory text-[#1A1F71] font-extrabold italic text-xs tracking-wider" dir="ltr">VISA</span>
+              <span class="px-2.5 py-1.5 rounded bg-ivory text-espresso font-bold text-xs flex items-center gap-1" dir="ltr">
+                <span class="inline-block w-3 h-3 rounded-full bg-[#EB001B]"></span>
+                <span class="inline-block w-3 h-3 rounded-full bg-[#F79E1B] -ml-2"></span>
+                <span class="ml-1 text-[10px]">Mastercard</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-royalBeige/60 gap-4">
+        <p>© ٢٠٢٦ VoltEdge Atelier (فولت إيدج أتيليه). جميع الحقوق محفوظة.</p>
+        <p>صُمم بعناية ليعكس أرقى معايير الأناقة العربية</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       درج السلة الجانبي التفاعلي (Slide-Over Cart Drawer) + نافذة المعاينة السريعة
+       ===================================================================== -->
+  <div id="cart-drawer-backdrop" class="fixed inset-0 z-50 bg-espresso/60 backdrop-blur-xs hidden opacity-0 transition-opacity duration-200"></div>
+  <aside id="cart-drawer" aria-label="سلة التسوق" class="fixed top-0 right-0 z-50 h-full w-full max-w-md bg-ivory text-espresso shadow-2xl border-l border-royalBronze/20 translate-x-full transition-transform duration-200 flex flex-col">
+    <div class="p-6 border-b border-royalBronze/15 flex items-center justify-between bg-royalBeige/50">
+      <div>
+        <h3 class="font-display text-2xl font-bold text-espresso">حقيبة التسوق الملكية</h3>
+        <p class="text-xs text-mutedCocoa mt-0.5">شحن مؤمّن ومجاني لكافة الطلبات داخل المملكة</p>
+      </div>
+      <button id="close-cart-btn" type="button" aria-label="إغلاق السلة" class="p-2 rounded-lg hover:bg-royalBeige text-espresso transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
+
+    <div class="p-6 border-t border-royalBronze/15 bg-royalBeige/60 space-y-4">
+      <div class="flex items-center justify-between text-base font-bold">
+        <span>الإجمالي التقديري:</span>
+        <span id="cart-total-price" class="tabular-nums text-xl text-royalBronze">0 ج.م</span>
+      </div>
+      <button id="checkout-btn" type="button" class="w-full py-3.5 px-6 rounded-lg bg-espresso hover:bg-royalBronze text-ivory font-bold text-sm transition-colors">
+        إتمام الطلب وتأكيد الحجز
+      </button>
+      <div id="checkout-feedback" class="hidden p-3.5 rounded-lg bg-matteGold/20 border border-matteGold text-espresso text-xs leading-relaxed"></div>
+    </div>
+  </aside>
+
+  <div id="quick-view-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-espresso/70 backdrop-blur-xs">
+    <div class="bg-ivory border border-matteGold/40 rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2 relative">
+      <button type="button" onclick="closeQuickView()" aria-label="إغلاق المعاينة" class="absolute top-3 left-3 z-10 w-9 h-9 rounded-full bg-espresso/80 text-ivory flex items-center justify-center hover:bg-matteGold hover:text-espresso transition-colors">✕</button>
+      <div class="aspect-[3/4] bg-royalBeige">
+        <img id="qv-image" src="" alt="" referrerPolicy="no-referrer" class="w-full h-full object-cover" />
+      </div>
+      <div class="p-6 sm:p-8 flex flex-col justify-between space-y-5">
+        <div class="space-y-3">
+          <span id="qv-category" class="text-xs font-semibold text-royalBronze"></span>
+          <h3 id="qv-title" class="font-display text-2xl sm:text-3xl font-bold text-espresso"></h3>
+          <p id="qv-price" class="tabular-nums text-xl font-bold text-matteGold"></p>
+          <p id="qv-desc" class="text-sm text-mutedCocoa leading-relaxed"></p>
+        </div>
+        <button id="qv-add-btn" type="button" class="w-full py-3.5 rounded-lg bg-matteGold hover:bg-goldHover text-espresso font-bold text-sm transition-colors">
+          أضيفي للسلة الآن
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-notification" class="fixed bottom-6 left-6 z-50 max-w-sm bg-espresso text-ivory border border-matteGold px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-24 opacity-0 pointer-events-none transition-all duration-200">
+    <span class="w-6 h-6 rounded-full bg-matteGold text-espresso flex items-center justify-center font-bold text-xs shrink-0">✓</span>
+    <p id="toast-message" class="text-xs sm:text-sm font-medium"></p>
+  </div>
+
+  <!-- أكواد Vanilla JavaScript -->
+  <script>
+    const CART_STORAGE_KEY = 'voltedge_atelier_cart_v1';
+
+    function getCart() {
+      try {
+        const raw = localStorage.getItem(CART_STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveCart(cart) {
+      try {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+      } catch (e) {}
+      updateCartUI();
+    }
+
+    function formatEGP(amount) {
+      return Number(amount).toLocaleString('ar-EG') + ' ج.م';
+    }
+
+    function addToCart(id, name, price, image, category) {
+      const cart = getCart();
+      const existing = cart.find(item => item.id === id);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ id, name, price: Number(price), image, category, qty: 1 });
+      }
+      saveCart(cart);
+
+      const badge = document.getElementById('cart-count-badge');
+      if (badge) {
+        badge.classList.add('scale-125');
+        setTimeout(() => badge.classList.remove('scale-125'), 220);
+      }
+
+      showToast('تمت إضافة "' + name + '" إلى حقيبة التسوق');
+    }
+
+    function changeQty(id, delta) {
+      let cart = getCart();
+      const target = cart.find(item => item.id === id);
+      if (!target) return;
+      target.qty += delta;
+      if (target.qty <= 0) {
+        cart = cart.filter(item => item.id !== id);
+      }
+      saveCart(cart);
+    }
+
+    function updateCartUI() {
+      const cart = getCart();
+      const totalCount = cart.reduce((acc, item) => acc + item.qty, 0);
+      const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+
+      const badge = document.getElementById('cart-count-badge');
+      if (badge) badge.textContent = totalCount;
+
+      const totalEl = document.getElementById('cart-total-price');
+      if (totalEl) totalEl.textContent = formatEGP(totalPrice);
+
+      const container = document.getElementById('cart-items-container');
+      if (!container) return;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-16 space-y-3">
+            <p class="font-display text-xl text-mutedCocoa">حقيبة التسوق فارغة حالياً</p>
+            <p class="text-xs text-mutedCocoa/80">استكشفي تصاميم الأتيليه وأضيفي قطعكِ المفضلة</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = cart.map(item => `
+        <div class="flex items-center gap-4 p-3 rounded-xl bg-royalBeige/70 border border-royalBronze/15">
+          <img src="${item.image}" alt="${item.name}" referrerPolicy="no-referrer" class="w-16 h-20 object-cover rounded-lg bg-royalBeige shrink-0" />
+          <div class="flex-1 min-w-0">
+            <p class="text-[11px] text-royalBronze">${item.category}</p>
+            <h4 class="font-display text-base font-bold text-espresso truncate">${item.name}</h4>
+            <p class="tabular-nums text-xs font-bold text-espresso mt-1">${formatEGP(item.price)}</p>
+          </div>
+          <div class="flex items-center gap-1.5 bg-ivory px-2 py-1 rounded-lg border border-royalBronze/20">
+            <button type="button" onclick="changeQty('${item.id}', -1)" class="w-6 h-6 text-xs font-bold hover:text-royalBronze">-</button>
+            <span class="tabular-nums text-xs font-bold px-1">${item.qty}</span>
+            <button type="button" onclick="changeQty('${item.id}', 1)" class="w-6 h-6 text-xs font-bold hover:text-royalBronze">+</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    let toastTimer = null;
+    function showToast(message) {
+      const toast = document.getElementById('toast-notification');
+      const msgEl = document.getElementById('toast-message');
+      if (!toast || !msgEl) return;
+      msgEl.textContent = message;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 2800);
+    }
+
+    const openCartBtn = document.getElementById('open-cart-btn');
+    const closeCartBtn = document.getElementById('close-cart-btn');
+    const cartDrawer = document.getElementById('cart-drawer');
+    const cartBackdrop = document.getElementById('cart-drawer-backdrop');
+
+    function openCartDrawer() {
+      cartBackdrop.classList.remove('hidden');
+      setTimeout(() => {
+        cartBackdrop.classList.remove('opacity-0');
+        cartDrawer.classList.remove('translate-x-full');
+      }, 10);
+    }
+
+    function closeCartDrawer() {
+      cartBackdrop.classList.add('opacity-0');
+      cartDrawer.classList.add('translate-x-full');
+      setTimeout(() => cartBackdrop.classList.add('hidden'), 200);
+    }
+
+    if (openCartBtn) openCartBtn.addEventListener('click', openCartDrawer);
+    if (closeCartBtn) closeCartBtn.addEventListener('click', closeCartDrawer);
+    if (cartBackdrop) cartBackdrop.addEventListener('click', closeCartDrawer);
+
+    const checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener('click', () => {
+        const cart = getCart();
+        const feedback = document.getElementById('checkout-feedback');
+        if (cart.length === 0) {
+          feedback.classList.remove('hidden');
+          feedback.textContent = 'الرجاء إضافة قطعة واحدة على الأقل قبل إتمام الطلب.';
+          return;
+        }
+        const orderNum = Math.floor(10000 + Math.random() * 90000);
+        saveCart([]);
+        feedback.classList.remove('hidden');
+        feedback.innerHTML = '<strong>تم استلام طلبكِ بنجاح رقم #' + orderNum + '</strong><br/>سيتواصل معكِ فريق خدمة عملاء الأتيليه خلال ساعة لتأكيد المقاسات وموعد التسليم.';
+      });
+    }
+
+    function openQuickView(id, name, price, image, category, desc) {
+      document.getElementById('qv-image').src = image;
+      document.getElementById('qv-image').alt = name;
+      document.getElementById('qv-category').textContent = category;
+      document.getElementById('qv-title').textContent = name;
+      document.getElementById('qv-price').textContent = formatEGP(price);
+      document.getElementById('qv-desc').textContent = desc;
+      const addBtn = document.getElementById('qv-add-btn');
+      addBtn.onclick = function () {
+        addToCart(id, name, price, image, category);
+        closeQuickView();
+      };
+      const modal = document.getElementById('quick-view-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeQuickView() {
+      const modal = document.getElementById('quick-view-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', updateCartUI);
+  </script>
+</body>
+</html>

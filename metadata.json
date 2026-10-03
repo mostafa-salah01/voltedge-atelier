@@ -1,0 +1,6 @@
+{
+  "name": "VoltEdge Atelier | فولت إيدج أتيليه",
+  "description": "متجر إلكتروني فاخر وأتيليه راقٍ لفساتين السهرة والزفاف والإكسسوارات الملكية والمجموعات الحصرية بتصميم عربي أصيل.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
