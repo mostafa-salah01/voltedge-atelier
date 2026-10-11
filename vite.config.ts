@@ -49,6 +49,7 @@ function atelierStaticPlugin(): Plugin {
 
 export default defineConfig(() => {
   return {
+    base: './',
     plugins: [atelierStaticPlugin(), react(), tailwindcss()],
     resolve: {
       alias: {

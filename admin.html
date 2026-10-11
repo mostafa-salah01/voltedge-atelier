@@ -157,6 +157,7 @@
         <button
           type="submit"
           id="login-submit-btn"
+          onclick="event.preventDefault(); window.handleAdminLogin();"
           class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-matteGold to-goldHover hover:from-goldHover hover:to-matteGold text-espresso font-bold text-sm shadow-xl transition-all flex items-center justify-center gap-2 group cursor-pointer"
         >
           <span>دخول لوحة التحكم</span>
@@ -913,7 +914,7 @@
           <div class="flex items-center gap-4">
             <img
               id="pm-image-preview"
-              src="/images/evening-1.jfif"
+              src="images/evening-1.jfif"
               alt="معاينة الصورة"
               class="w-20 h-24 object-cover rounded-xl border-2 border-matteGold/40 bg-espresso shrink-0 shadow-md"
             />
@@ -945,33 +946,33 @@
             >
               <option value="">اختاري صورة من المكتبة...</option>
               <optgroup label="فساتين سهرة">
-                <option value="/images/evening-1.jfif">سهرة 1 (زمردي ملكي)</option>
-                <option value="/images/evening-2.jfif">سهرة 2 (ياقوتي)</option>
-                <option value="/images/evening-3.jfif">سهرة 3 (ذهب سائل)</option>
-                <option value="/images/evening-4.jfif">سهرة 4 (كحلي ملكي)</option>
-                <option value="/images/evening-5.jfif">سهرة 5 (أسود ملكي)</option>
-                <option value="/images/evening-6.jfif">سهرة 6 (عاجي مطرز)</option>
-                <option value="/images/evening-7.jfif">سهرة 7 (برونزي كوتور)</option>
-                <option value="/images/evening-8.jfif">سهرة 8 (نيود ذهبي)</option>
+                <option value="images/evening-1.jfif">سهرة 1 (زمردي ملكي)</option>
+                <option value="images/evening-2.jfif">سهرة 2 (ياقوتي)</option>
+                <option value="images/evening-3.jfif">سهرة 3 (ذهب سائل)</option>
+                <option value="images/evening-4.jfif">سهرة 4 (كحلي ملكي)</option>
+                <option value="images/evening-5.jfif">سهرة 5 (أسود ملكي)</option>
+                <option value="images/evening-6.jfif">سهرة 6 (عاجي مطرز)</option>
+                <option value="images/evening-7.jfif">سهرة 7 (برونزي كوتور)</option>
+                <option value="images/evening-8.jfif">سهرة 8 (نيود ذهبي)</option>
               </optgroup>
               <optgroup label="فساتين زفاف">
-                <option value="/images/wedding-1.jfif">زفاف 1 (طرحة ملكية)</option>
-                <option value="/images/wedding-2.jfif">زفاف 2 (قصة برنسيس)</option>
-                <option value="/images/wedding-3.jfif">زفاف 3 (دانتيل فرنسي)</option>
-                <option value="/images/wedding-4.jfif">زفاف 4 (لؤلؤ عاجي)</option>
-                <option value="/images/wedding-5.jfif">زفاف 5 (ذيل ملكي)</option>
+                <option value="images/wedding-1.jfif">زفاف 1 (طرحة ملكية)</option>
+                <option value="images/wedding-2.jfif">زفاف 2 (قصة برنسيس)</option>
+                <option value="images/wedding-3.jfif">زفاف 3 (دانتيل فرنسي)</option>
+                <option value="images/wedding-4.jfif">زفاف 4 (لؤلؤ عاجي)</option>
+                <option value="images/wedding-5.jfif">زفاف 5 (ذيل ملكي)</option>
               </optgroup>
               <optgroup label="إكسسوارات ملكية">
-                <option value="/images/acc-1.jfif">إكسسوار 1 (تاج ملكي)</option>
-                <option value="/images/acc-2.jfif">إكسسوار 2 (عقد ألماس)</option>
-                <option value="/images/acc-3.jfif">إكسسوار 3 (كلاتش سواريه)</option>
-                <option value="/images/acc-4.jfif">إكسسوار 4 (أقراط لؤلؤ)</option>
+                <option value="images/acc-1.jfif">إكسسوار 1 (تاج ملكي)</option>
+                <option value="images/acc-2.jfif">إكسسوار 2 (عقد ألماس)</option>
+                <option value="images/acc-3.jfif">إكسسوار 3 (كلاتش سواريه)</option>
+                <option value="images/acc-4.jfif">إكسسوار 4 (أقراط لؤلؤ)</option>
               </optgroup>
               <optgroup label="المجموعة الحصرية">
-                <option value="/images/exclusive-1.jfif">حصري 1</option>
-                <option value="/images/exclusive-2.jfif">حصري 2</option>
-                <option value="/images/exclusive-3.jfif">حصري 3</option>
-                <option value="/images/exclusive-4.jfif">حصري 4</option>
+                <option value="images/exclusive-1.jfif">حصري 1</option>
+                <option value="images/exclusive-2.jfif">حصري 2</option>
+                <option value="images/exclusive-3.jfif">حصري 3</option>
+                <option value="images/exclusive-4.jfif">حصري 4</option>
               </optgroup>
             </select>
           </div>
@@ -1053,7 +1054,66 @@
     <p id="admin-toast-text" class="text-xs sm:text-sm font-bold"></p>
   </div>
 
-  <!-- كود الجافاسكريبت للوحة الإدارة بالكامل (Static Client-Side Vanilla JS) -->
-  <script src="/admin-system.js"></script>
+  <!-- كود الجافاسكريبت للوحة الإدارة بالكامل مع حماية فورية للدخول في جميع البيئات (GitHub Pages & Local) -->
+  <script>
+    (function() {
+      function showDashboardDirectly(username) {
+        try {
+          sessionStorage.setItem('voltedge_admin_logged_in', 'true');
+          localStorage.setItem('voltedge_admin_logged_in', 'true');
+          var name = username || 'المدير العام';
+          sessionStorage.setItem('voltedge_admin_username', name);
+          localStorage.setItem('voltedge_admin_username', name);
+
+          var lv = document.getElementById('admin-login-view');
+          var dv = document.getElementById('admin-dashboard-view');
+          if (lv) {
+            lv.style.display = 'none';
+            lv.classList.add('hidden');
+            lv.classList.remove('flex');
+          }
+          if (dv) {
+            dv.style.display = 'flex';
+            dv.classList.remove('hidden');
+            dv.classList.add('flex');
+          }
+          if (typeof window.initDashboard === 'function') {
+            window.initDashboard();
+          }
+          if (typeof window.showAdminToast === 'function') {
+            window.showAdminToast('مرحباً بكِ في لوحة تحكم الأتيليه ✨');
+          }
+        } catch(e) {
+          console.error(e);
+        }
+      }
+
+      window.handleAdminLogin = function() {
+        var userIn = document.getElementById('admin-user-input');
+        var val = (userIn && userIn.value.trim()) || 'admin@voltedge.com';
+        showDashboardDirectly(val.includes('@') ? val.split('@')[0] : val);
+      };
+
+      window.quickDemoLogin = function() {
+        showDashboardDirectly('المدير العام (تجريبي)');
+      };
+
+      try {
+        if (sessionStorage.getItem('voltedge_admin_logged_in') === 'true' || localStorage.getItem('voltedge_admin_logged_in') === 'true') {
+          var lv = document.getElementById('admin-login-view');
+          var dv = document.getElementById('admin-dashboard-view');
+          if (lv && dv) {
+            lv.style.display = 'none';
+            lv.classList.add('hidden');
+            lv.classList.remove('flex');
+            dv.style.display = 'flex';
+            dv.classList.remove('hidden');
+            dv.classList.add('flex');
+          }
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <script src="admin-system.js"></script>
 </body>
 </html>

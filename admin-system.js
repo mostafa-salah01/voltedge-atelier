@@ -36,7 +36,10 @@
   // 1. إدارة المصادقة وتسجيل الدخول (Demo Authentication)
   // =========================================================================
   function isAuthenticated() {
-    return sessionStorage.getItem(STORAGE_AUTH_KEY) === 'true';
+    return (
+      sessionStorage.getItem(STORAGE_AUTH_KEY) === 'true' ||
+      localStorage.getItem(STORAGE_AUTH_KEY) === 'true'
+    );
   }
 
   function checkAuthUI() {
@@ -45,55 +48,65 @@
     if (!loginView || !dashboardView) return;
 
     if (isAuthenticated()) {
+      loginView.style.display = 'none';
       loginView.classList.add('hidden');
+      loginView.classList.remove('flex');
+
+      dashboardView.style.display = 'flex';
       dashboardView.classList.remove('hidden');
       dashboardView.classList.add('flex');
-      initDashboard();
+
+      try {
+        initDashboard();
+      } catch (err) {
+        console.error('Error in initDashboard:', err);
+      }
     } else {
+      dashboardView.style.display = 'none';
       dashboardView.classList.add('hidden');
       dashboardView.classList.remove('flex');
+
+      loginView.style.display = 'flex';
       loginView.classList.remove('hidden');
+      loginView.classList.add('flex');
     }
   }
+  window.checkAuthUI = checkAuthUI;
 
   window.handleAdminLogin = function () {
-    const user = document.getElementById('admin-user-input')?.value.trim();
-    const pass = document.getElementById('admin-pass-input')?.value.trim();
+    const userInput = document.getElementById('admin-user-input');
+    const passInput = document.getElementById('admin-pass-input');
+    const user = (userInput && userInput.value.trim()) || 'admin@voltedge.com';
     const feedback = document.getElementById('login-feedback');
 
-    // Accepts any credentials in demo mode
-    if (!user || !pass) {
-      if (feedback) {
-        feedback.textContent = 'الرجاء إدخال أي اسم مستخدم وكلمة مرور للمتابعة.';
-        feedback.className = 'p-2.5 rounded-lg text-xs text-center bg-red-950/50 text-red-300 border border-red-500/30';
-        feedback.classList.remove('hidden');
-      }
-      return;
-    }
-
     if (feedback) {
-      feedback.textContent = 'تم التحقق بنجاح! جاري فتح لوحة التحكم...';
-      feedback.className = 'p-2.5 rounded-lg text-xs text-center bg-emerald-950/50 text-emerald-300 border border-emerald-500/30';
+      feedback.textContent = 'تم تسجيل الدخول بنجاح! جاري فتح لوحة الإدارة...';
+      feedback.className = 'p-2.5 rounded-lg text-xs text-center bg-emerald-950/70 text-emerald-300 border border-emerald-500/40 block';
       feedback.classList.remove('hidden');
     }
 
-    setTimeout(() => {
-      sessionStorage.setItem(STORAGE_AUTH_KEY, 'true');
-      sessionStorage.setItem('voltedge_admin_username', user.split('@')[0] || 'المدير العام');
-      checkAuthUI();
-      showAdminToast('مرحباً بكِ في لوحة تحكم الأتيليه ✨');
-    }, 400);
+    const adminName = user.includes('@') ? user.split('@')[0] : user;
+    sessionStorage.setItem(STORAGE_AUTH_KEY, 'true');
+    localStorage.setItem(STORAGE_AUTH_KEY, 'true');
+    sessionStorage.setItem('voltedge_admin_username', adminName || 'المدير العام');
+    localStorage.setItem('voltedge_admin_username', adminName || 'المدير العام');
+
+    checkAuthUI();
+    showAdminToast('مرحباً بكِ في لوحة تحكم الأتيليه ✨');
   };
 
   window.quickDemoLogin = function () {
     sessionStorage.setItem(STORAGE_AUTH_KEY, 'true');
+    localStorage.setItem(STORAGE_AUTH_KEY, 'true');
     sessionStorage.setItem('voltedge_admin_username', 'المدير العام (تجريبي)');
+    localStorage.setItem('voltedge_admin_username', 'المدير العام (تجريبي)');
     checkAuthUI();
     showAdminToast('تم تسجيل الدخول السريع بنجاح كمسؤول للنظام ✨');
   };
 
   window.handleAdminLogout = function () {
     sessionStorage.removeItem(STORAGE_AUTH_KEY);
+    localStorage.removeItem(STORAGE_AUTH_KEY);
     checkAuthUI();
     showAdminToast('تم تسجيل الخروج بنجاح.');
   };
@@ -117,7 +130,7 @@
       total: 14500,
       status: 'pending', // pending, shipped, delivered, cancelled
       items: [
-        { id: 'ev-1', name: 'فستان السهرة الزمردي الملكي', price: 14500, qty: 1, image: '/images/evening-1.jfif' }
+        { id: 'ev-1', name: 'فستان السهرة الزمردي الملكي', price: 14500, qty: 1, image: 'images/evening-1.jfif' }
       ]
     },
     {
@@ -135,8 +148,8 @@
       total: 21000,
       status: 'shipped',
       items: [
-        { id: 'ev-2', name: 'فستان السهرة الياقوتي الكوتور', price: 16500, qty: 1, image: '/images/evening-2.jfif' },
-        { id: 'acc-1', name: 'تاج الملكة فيكتوريا المرصع بالزركون', price: 4500, qty: 1, image: '/images/acc-1.jfif' }
+        { id: 'ev-2', name: 'فستان السهرة الياقوتي الكوتور', price: 16500, qty: 1, image: 'images/evening-2.jfif' },
+        { id: 'acc-1', name: 'تاج الملكة فيكتوريا المرصع بالزركون', price: 4500, qty: 1, image: 'images/acc-1.jfif' }
       ]
     },
     {
@@ -154,7 +167,7 @@
       total: 18500,
       status: 'delivered',
       items: [
-        { id: 'ev-3', name: 'فستان الذهب السائل المطرز يدوياً', price: 18500, qty: 1, image: '/images/evening-3.jfif' }
+        { id: 'ev-3', name: 'فستان الذهب السائل المطرز يدوياً', price: 18500, qty: 1, image: 'images/evening-3.jfif' }
       ]
     },
     {
@@ -172,7 +185,7 @@
       total: 35000,
       status: 'delivered',
       items: [
-        { id: 'wd-1', name: 'فستان زفاف العروس الملكية «أفروديت»', price: 35000, qty: 1, image: '/images/wedding-1.jfif' }
+        { id: 'wd-1', name: 'فستان زفاف العروس الملكية «أفروديت»', price: 35000, qty: 1, image: 'images/wedding-1.jfif' }
       ]
     },
     {
@@ -190,7 +203,7 @@
       total: 7800,
       status: 'delivered',
       items: [
-        { id: 'acc-2', name: 'عقد الأوبال الملكي الفاخر', price: 7800, qty: 1, image: '/images/acc-2.jfif' }
+        { id: 'acc-2', name: 'عقد الأوبال الملكي الفاخر', price: 7800, qty: 1, image: 'images/acc-2.jfif' }
       ]
     }
   ];
@@ -227,7 +240,7 @@
       price: 14500,
       sku: 'EV-01',
       status: 'in_stock',
-      image: '/images/evening-1.jfif',
+      image: 'images/evening-1.jfif',
       desc: 'حرير كريب فاخر بقصة منحوتة وتطريز زمردي يدوي مع شال كاب ملكي.'
     },
     {
@@ -238,7 +251,7 @@
       price: 16500,
       sku: 'EV-02',
       status: 'in_stock',
-      image: '/images/evening-2.jfif',
+      image: 'images/evening-2.jfif',
       desc: 'قماش تفتا راقٍ بلون الياقوت الأحمر مع تفاصيل درابيه يدوية مطعمة بالكريستال.'
     },
     {
@@ -249,7 +262,7 @@
       price: 18500,
       sku: 'EV-03',
       status: 'in_stock',
-      image: '/images/evening-3.jfif',
+      image: 'images/evening-3.jfif',
       desc: 'تول إيطالي مذهب بخيوط الذهب المعدنية وأحجار شواروفسكي المتلألئة.'
     },
     {
@@ -260,7 +273,7 @@
       price: 15200,
       sku: 'EV-04',
       status: 'in_stock',
-      image: '/images/evening-4.jfif',
+      image: 'images/evening-4.jfif',
       desc: 'مخمل أزرق ملكي بفتحة رقبة أيقونية وتطريز فضي لامع مستوحى من سماء الليل.'
     },
     {
@@ -271,7 +284,7 @@
       price: 35000,
       sku: 'WD-01',
       status: 'made_to_order',
-      image: '/images/wedding-1.jfif',
+      image: 'images/wedding-1.jfif',
       desc: 'دانتيل فرنسي كوردونيه مشغول يدوياً مع ذيل ملكي بطول 3 أمتار وطرحة مطرزة.'
     },
     {
@@ -282,7 +295,7 @@
       price: 38000,
       sku: 'WD-02',
       status: 'made_to_order',
-      image: '/images/wedding-2.jfif',
+      image: 'images/wedding-2.jfif',
       desc: 'قصة أميرة منفوشة بطبقات التول الحريري وألف حبة لؤلؤ زراعي طبيعي.'
     },
     {
@@ -293,7 +306,7 @@
       price: 4500,
       sku: 'AC-01',
       status: 'in_stock',
-      image: '/images/acc-1.jfif',
+      image: 'images/acc-1.jfif',
       desc: 'تاج مطلي بالذهب الأبيض عيار 18 مع أحجار زركون سويدي نقية عاكسة للضوء.'
     },
     {
@@ -304,7 +317,7 @@
       price: 7800,
       sku: 'AC-02',
       status: 'in_stock',
-      image: '/images/acc-2.jfif',
+      image: 'images/acc-2.jfif',
       desc: 'طقم متكامل من العقد والأقراط المصنوعة يدوياً بكريستالات عاجية مطلية بالذهب.'
     },
     {
@@ -315,7 +328,7 @@
       price: 42000,
       sku: 'EX-01',
       status: 'in_stock',
-      image: '/images/exclusive-1.jfif',
+      image: 'images/exclusive-1.jfif',
       desc: 'قطعة واحدة وحيدة تم تفصيلها في أسبوع الموضة بباريس من الحرير الطبيعي والتطريز النادر.'
     }
   ];
@@ -611,7 +624,7 @@
     tbody.innerHTML = filtered.map(o => {
       const itemsList = (o.items || []).map(it => `
         <div class="flex items-center gap-1.5 py-0.5">
-          <img src="${it.image || '/images/evening-1.jfif'}" alt="" class="w-6 h-7 object-cover rounded bg-obsidian shrink-0 border border-matteGold/20" />
+          <img src="${it.image || 'images/evening-1.jfif'}" alt="" class="w-6 h-7 object-cover rounded bg-obsidian shrink-0 border border-matteGold/20" />
           <span class="truncate max-w-[140px] text-[11px] font-medium text-ivory">${it.name} (${it.qty || 1})</span>
         </div>
       `).join('');
@@ -759,7 +772,7 @@
       total: 16500,
       status: 'pending',
       items: [
-        { id: 'ev-demo', name: 'فستان السهرة الياقوتي الكوتور', price: 16500, qty: 1, image: '/images/evening-2.jfif' }
+        { id: 'ev-demo', name: 'فستان السهرة الياقوتي الكوتور', price: 16500, qty: 1, image: 'images/evening-2.jfif' }
       ]
     };
 
@@ -791,7 +804,7 @@
     const itemsHtml = (order.items || []).map(it => `
       <div class="flex items-center justify-between py-2 border-b border-royalBronze/10">
         <div class="flex items-center gap-2.5">
-          <img src="${it.image || '/images/evening-1.jfif'}" alt="" class="w-10 h-12 object-cover rounded bg-royalBeige shrink-0" />
+          <img src="${it.image || 'images/evening-1.jfif'}" alt="" class="w-10 h-12 object-cover rounded bg-royalBeige shrink-0" />
           <div>
             <strong class="font-bold text-espresso block">${it.name}</strong>
             <span class="text-[11px] text-mutedCocoa">الكمية: ${it.qty || 1} × ${formatEGP(it.price)}</span>
@@ -917,10 +930,10 @@
           <!-- صورة القطعة مع زر التعديل السريع -->
           <div class="relative aspect-3/4 overflow-hidden bg-obsidian">
             <img
-              src="${item.image || '/images/evening-1.jfif'}"
+              src="${item.image || 'images/evening-1.jfif'}"
               alt="${item.name}"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              onerror="this.src='/images/evening-1.jfif'"
+              onerror="this.src='images/evening-1.jfif'"
             />
             <div class="absolute top-2.5 right-2.5 flex flex-col gap-1">
               ${statusBadge}
@@ -1005,7 +1018,7 @@
     form.reset();
     document.getElementById('pm-item-id').value = '';
     titleEl.textContent = 'إضافة فستان / قطعة جديدة للأتيليه ✨';
-    currentEditingImage = '/images/evening-1.jfif';
+    currentEditingImage = 'images/evening-1.jfif';
     document.getElementById('pm-image-preview').src = currentEditingImage;
     document.getElementById('pm-image-url').value = '';
 
@@ -1031,7 +1044,7 @@
     document.getElementById('pm-sku').value = item.sku || '';
     document.getElementById('pm-desc').value = item.desc || '';
 
-    currentEditingImage = item.image || '/images/evening-1.jfif';
+    currentEditingImage = item.image || 'images/evening-1.jfif';
     document.getElementById('pm-image-preview').src = currentEditingImage;
     document.getElementById('pm-image-url').value = item.image.startsWith('data:') ? '' : item.image;
 
@@ -1109,7 +1122,7 @@
         target.status = status;
         target.sku = sku;
         target.desc = desc;
-        target.image = currentEditingImage || target.image || '/images/evening-1.jfif';
+        target.image = currentEditingImage || target.image || 'images/evening-1.jfif';
       }
       showAdminToast(`تم تحديث بيانات وصورة «${name}» بنجاح ✨`);
     } else {
@@ -1124,7 +1137,7 @@
         status: status,
         sku: sku,
         desc: desc,
-        image: currentEditingImage || '/images/evening-1.jfif'
+        image: currentEditingImage || 'images/evening-1.jfif'
       });
       showAdminToast(`تمت إضافة القطعة الجديدة «${name}» للكتالوج بنجاح ✨`);
     }
@@ -1307,9 +1320,12 @@
 
     renderAll();
   }
+  window.initDashboard = initDashboard;
 
-  document.addEventListener('DOMContentLoaded', () => {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', checkAuthUI);
+  } else {
     checkAuthUI();
-  });
+  }
 
 })();
