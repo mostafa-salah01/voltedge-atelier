@@ -30,6 +30,7 @@ function atelierStaticPlugin(): Plugin {
           '/wedding-bridal.html',
           '/accessories.html',
           '/exclusive-collection.html',
+          '/admin.html',
         ];
         if (htmlPages.includes(url)) {
           const htmlPath = path.resolve(__dirname, '.' + url);
@@ -62,6 +63,7 @@ export default defineConfig(() => {
           wedding: path.resolve(__dirname, 'wedding-bridal.html'),
           accessories: path.resolve(__dirname, 'accessories.html'),
           exclusive: path.resolve(__dirname, 'exclusive-collection.html'),
+          admin: path.resolve(__dirname, 'admin.html'),
         },
       },
     },

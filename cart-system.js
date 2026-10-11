@@ -760,6 +760,30 @@
       }
     }
 
+    // Save order in localStorage for Admin Dashboard
+    try {
+      const existingOrders = JSON.parse(localStorage.getItem('voltedge_atelier_orders_v1') || '[]');
+      existingOrders.unshift({
+        id: orderNum,
+        date: dateStr,
+        timestamp: Date.now(),
+        name: name,
+        phone: phone,
+        whatsapp: whatsapp,
+        gov: gov,
+        address: address,
+        notes: notes || '',
+        paymentMethod: selectedPaymentMethod,
+        paymentLabel: methodLabel,
+        total: summary.total,
+        items: [...cart],
+        status: 'pending' // pending: جاري التجهيز, shipped: تم الشحن, delivered: تم التسليم, cancelled: ملغي
+      });
+      localStorage.setItem('voltedge_atelier_orders_v1', JSON.stringify(existingOrders));
+    } catch (e) {
+      console.warn('Failed to save order to localStorage', e);
+    }
+
     // Clear cart
     saveCart([]);
 

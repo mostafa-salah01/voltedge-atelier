@@ -99,6 +99,12 @@
           <span>السلة</span>
           <span id="cart-count-badge" class="tabular-nums inline-flex items-center justify-center min-w-[20px] h-[20px] sm:min-w-[22px] sm:h-[22px] px-1 sm:px-1.5 text-[11px] sm:text-xs font-bold rounded-full bg-matteGold text-espresso transition-transform duration-200">0</span>
         </button>
+
+        <!-- رابط لوحة تحكم الإدارة التجريبية -->
+        <a href="admin.html" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg bg-espresso hover:bg-matteGold text-ivory hover:text-espresso border border-matteGold/40 text-xs sm:text-sm font-semibold transition-all whitespace-nowrap shadow-xs" title="لوحة تحكم إدارة المتجر والطلبات">
+          <span>🔒</span>
+          <span class="hidden sm:inline">لوحة الإدارة</span>
+        </a>
       </div>
 
       <a href="index.html" dir="ltr" class="font-display text-lg sm:text-2xl md:text-3xl font-bold tracking-wider text-espresso hover:text-royalBronze transition-colors whitespace-nowrap">
@@ -114,6 +120,10 @@
         <a href="wedding-bridal.html" class="py-2 px-3 rounded-lg bg-royalBeige text-royalBronze font-bold">زفاف وعرائس</a>
         <a href="accessories.html" class="py-2 px-3 rounded-lg hover:bg-royalBeige transition-colors">إكسسوارات</a>
         <a href="exclusive-collection.html" class="py-2 px-3 rounded-lg text-royalBronze font-semibold hover:bg-royalBeige transition-colors">المجموعة الحصرية</a>
+        <a href="admin.html" class="py-2.5 px-3 rounded-lg bg-espresso text-matteGold font-bold flex items-center justify-between border border-matteGold/30">
+          <span>لوحة تحكم الإدارة (Admin)</span>
+          <span>🔒</span>
+        </a>
       </nav>
     </div>
   </header>
@@ -376,7 +386,13 @@
 
       <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-royalBeige/60 gap-4">
         <p>© ٢٠٢٦ VoltEdge Atelier (فولت إيدج أتيليه). جميع الحقوق محفوظة.</p>
-        <p>صُمم بعناية ليعكس أرقى معايير الأناقة العربية</p>
+        <div class="flex items-center gap-4">
+          <p>صُمم بعناية ليعكس أرقى معايير الأناقة العربية</p>
+          <a href="admin.html" class="text-matteGold hover:underline text-xs flex items-center gap-1 font-semibold">
+            <span>🔒</span>
+            <span>بوابة الإدارة والتقارير</span>
+          </a>
+        </div>
       </div>
     </div>
   </footer>
@@ -626,6 +642,24 @@
         document.getElementById('success-details').textContent =
           'تم تسجيل طلب استشارة التفصيل الخاص لمناسبتكِ بتاريخ (' + date + ') — نوع الموعد: (' + type + '). سنتواصل معكِ عبر الرقم (' + phone + ') خلال ساعات العمل لتأكيد الساعة المناسبة لكِ.';
         successBox.classList.remove('hidden');
+
+        try {
+          const bookings = JSON.parse(localStorage.getItem('voltedge_atelier_bridal_bookings_v1') || '[]');
+          bookings.unshift({
+            id: refNum,
+            dateSubmitted: new Date().toLocaleDateString('ar-EG'),
+            timestamp: Date.now(),
+            brideName: name,
+            phone: phone,
+            weddingDate: date,
+            type: type,
+            status: 'قيد الانتظار'
+          });
+          localStorage.setItem('voltedge_atelier_bridal_bookings_v1', JSON.stringify(bookings));
+        } catch (e) {
+          console.warn('Failed to save bridal booking', e);
+        }
+
         consultationForm.reset();
         window.showToast ? window.showToast('تم تأكيد حجز استشارة الزفاف بنجاح') : null;
       });

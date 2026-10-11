@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>لوحة تحكم إدارة المتجر | VoltEdge Atelier Dashboard</title>
+  <meta name="description" content="لوحة تحكم إدارة متجر وأتيليه VoltEdge - متابعة الطلبات، إدارة الفساتين والصور، وتقارير المبيعات لجمهورية مصر العربية." />
+
+  <!-- الخطوط العربية الفاخرة من Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- استدعاء Tailwind CSS عبر CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ivory: '#FDFBF7',
+            royalBeige: '#F5F0EB',
+            matteGold: '#D4AF37',
+            goldHover: '#B89428',
+            royalBronze: '#8D6E63',
+            espresso: '#1E1916',
+            obsidian: '#120E0D',
+            mutedCocoa: '#6E5D54'
+          },
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif'],
+            amiri: ['Amiri', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Cairo', sans-serif;
+      overflow-x: hidden;
+      background-color: #120E0D;
+      color: #FDFBF7;
+    }
+    .font-display {
+      font-family: 'Amiri', serif;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1E1916;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D4AF37;
+      border-radius: 3px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.98) translateY(6px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .animate-fadeIn {
+      animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .tab-btn.active {
+      background: #D4AF37;
+      color: #1E1916;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(212, 175, 55, 0.25);
+    }
+  </style>
+</head>
+<body class="bg-obsidian text-ivory antialiased selection:bg-matteGold/30 selection:text-ivory min-h-screen flex flex-col">
+
+  <!-- =========================================================================
+       1. شاشة تسجيل الدخول التجريبية (Demo Admin Login View)
+       ========================================================================= -->
+  <section id="admin-login-view" class="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-obsidian via-espresso to-[#0a0807] relative overflow-hidden">
+    
+    <!-- خلفية جمالية زخرفية -->
+    <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-matteGold/5 blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-royalBronze/10 blur-3xl pointer-events-none"></div>
+
+    <div class="relative w-full max-w-md bg-espresso/90 backdrop-blur-md border-2 border-matteGold/40 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6 animate-fadeIn">
+      
+      <!-- شعار الأتيليه الملكي -->
+      <div class="text-center space-y-2">
+        <a href="index.html" dir="ltr" class="inline-block font-display text-2xl sm:text-3xl font-bold tracking-wider text-ivory hover:text-matteGold transition-colors">
+          VoltEdge <span class="text-matteGold font-normal italic">Atelier</span>
+        </a>
+        <div class="flex items-center justify-center gap-2 pt-1">
+          <span class="h-px w-8 bg-matteGold/40"></span>
+          <span class="text-xs uppercase tracking-widest text-matteGold font-bold">بوابة المشرفين والمديرين</span>
+          <span class="h-px w-8 bg-matteGold/40"></span>
+        </div>
+        <p class="text-xs text-royalBeige/70 pt-1">لوحة التحكم وإدارة مبيعات الأزياء والكوتور</p>
+      </div>
+
+      <!-- إشعار الوضع التجريبي المريح -->
+      <div class="p-3.5 rounded-xl bg-matteGold/10 border border-matteGold/30 text-xs text-royalBeige space-y-1">
+        <div class="flex items-center gap-2 text-matteGold font-bold">
+          <span>✨</span>
+          <span>وضع التجربة التفاعلية (Demo Mode):</span>
+        </div>
+        <p class="text-[11px] text-royalBeige/80 leading-relaxed">
+          يمكنك إدخال أي اسم مستخدم وكلمة مرور تريدها، أو النقر مباشرة على زر <strong>«الدخول السريع كمسؤول»</strong> لاختبار كافة الوظائف والتقارير وتعديل الصور فوراً!
+        </p>
+      </div>
+
+      <!-- نموذج تسجيل الدخول -->
+      <form id="login-form" class="space-y-4" onsubmit="event.preventDefault(); window.handleAdminLogin();">
+        <div>
+          <label for="admin-user-input" class="block text-xs font-semibold text-royalBeige mb-1.5">اسم المستخدم أو البريد الإلكتروني</label>
+          <div class="relative">
+            <input
+              type="text"
+              id="admin-user-input"
+              value="admin@voltedge.com"
+              placeholder="مثال: admin أو أي بريد"
+              class="w-full px-4 py-3 rounded-xl bg-obsidian/80 border border-matteGold/30 focus:border-matteGold focus:ring-1 focus:ring-matteGold text-sm text-ivory outline-none transition-all placeholder:text-royalBeige/30"
+            />
+            <span class="absolute left-3.5 top-3.5 text-xs text-matteGold">👤</span>
+          </div>
+        </div>
+
+        <div>
+          <label for="admin-pass-input" class="block text-xs font-semibold text-royalBeige mb-1.5">كلمة المرور السرية</label>
+          <div class="relative">
+            <input
+              type="password"
+              id="admin-pass-input"
+              value="123456"
+              placeholder="أي كلمة مرور للتجربة"
+              class="w-full px-4 py-3 rounded-xl bg-obsidian/80 border border-matteGold/30 focus:border-matteGold focus:ring-1 focus:ring-matteGold text-sm text-ivory outline-none transition-all placeholder:text-royalBeige/30"
+            />
+            <span class="absolute left-3.5 top-3.5 text-xs text-matteGold">🔑</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-xs text-royalBeige/70 pt-1">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="remember-admin" checked class="accent-[#D4AF37] rounded" />
+            <span>تذكر جلستي الحالية</span>
+          </label>
+          <span class="text-matteGold/80 text-[11px]">صلاحيات: مدير تنفيذي كاملة</span>
+        </div>
+
+        <!-- رسالة الخطأ أو التأكيد -->
+        <div id="login-feedback" class="hidden p-2.5 rounded-lg text-xs text-center"></div>
+
+        <!-- زر تسجيل الدخول -->
+        <button
+          type="submit"
+          id="login-submit-btn"
+          class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-matteGold to-goldHover hover:from-goldHover hover:to-matteGold text-espresso font-bold text-sm shadow-xl transition-all flex items-center justify-center gap-2 group cursor-pointer"
+        >
+          <span>دخول لوحة التحكم</span>
+          <span class="transition-transform group-hover:-translate-x-1">←</span>
+        </button>
+
+        <!-- زر الدخول المباشر السريع -->
+        <button
+          type="button"
+          onclick="window.quickDemoLogin()"
+          class="w-full py-2.5 px-4 rounded-xl bg-obsidian/60 hover:bg-obsidian border border-matteGold/20 text-xs font-semibold text-royalBeige hover:text-matteGold transition-colors flex items-center justify-center gap-2 cursor-pointer"
+        >
+          <span>⚡ دخول فوري سريع كمسؤول (بنقرة واحدة)</span>
+        </button>
+      </form>
+
+      <!-- الرجوع للمتجر -->
+      <div class="pt-2 text-center border-t border-matteGold/15">
+        <a href="index.html" class="inline-flex items-center gap-1.5 text-xs text-royalBeige/70 hover:text-matteGold transition-colors">
+          <span>←</span>
+          <span>الرجوع إلى المتجر الإلكتروني الرئيسي</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       2. لوحة التحكم الكاملة (Admin Dashboard View)
+       ========================================================================= -->
+  <div id="admin-dashboard-view" class="hidden flex-1 flex-col">
+    
+    <!-- شريط الرأس العلوي الفاخر للوحة التحكم -->
+    <header class="sticky top-0 z-40 bg-espresso/95 backdrop-blur-md border-b border-matteGold/30">
+      <div class="max-w-[1440px] mx-auto px-4 sm:px-8 h-18 sm:h-20 flex items-center justify-between gap-4">
+        
+        <!-- اللوجو + علامة الوضع التجريبي -->
+        <div class="flex items-center gap-3 sm:gap-4">
+          <a href="index.html" dir="ltr" class="font-display text-xl sm:text-2xl font-bold tracking-wider text-ivory hover:text-matteGold transition-colors">
+            VoltEdge <span class="text-matteGold font-normal italic">Atelier</span>
+          </a>
+          <div class="h-6 w-px bg-matteGold/30 hidden sm:block"></div>
+          <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-matteGold/15 border border-matteGold/40 text-[11px] font-bold text-matteGold">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            لوحة الإدارة (تجريبية تفاعلية)
+          </span>
+        </div>
+
+        <!-- أزرار الإجراءات السريعة في الهيدر -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- زر معاينة المتجر -->
+          <a
+            href="index.html"
+            target="_blank"
+            class="px-3 sm:px-4 py-2 rounded-xl bg-obsidian hover:bg-matteGold/20 border border-matteGold/30 text-xs font-semibold text-royalBeige hover:text-matteGold transition-all flex items-center gap-1.5"
+            title="فتح المتجر الرئيسي في نافذة جديدة"
+          >
+            <span>🛍️</span>
+            <span class="hidden md:inline">معاينة المتجر كزبون</span>
+          </a>
+
+          <!-- كارت الأدمن الشخصي -->
+          <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-obsidian/70 border border-royalBronze/30 text-xs">
+            <span class="w-7 h-7 rounded-full bg-matteGold text-espresso flex items-center justify-center font-bold text-xs shrink-0">م</span>
+            <div class="hidden sm:block text-right">
+              <span id="current-admin-name" class="font-bold text-ivory block leading-tight text-xs">المدير العام</span>
+              <span class="text-[10px] text-matteGold/90">صلاحيات كاملة</span>
+            </div>
+          </div>
+
+          <!-- زر تسجيل الخروج -->
+          <button
+            type="button"
+            onclick="window.handleAdminLogout()"
+            aria-label="تسجيل الخروج"
+            class="p-2 sm:px-3 sm:py-2 rounded-xl bg-red-950/40 hover:bg-red-900/60 border border-red-500/30 text-red-200 text-xs font-semibold transition-colors flex items-center gap-1.5 cursor-pointer"
+            title="تسجيل الخروج"
+          >
+            <span>🚪</span>
+            <span class="hidden sm:inline">خروج</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- شريط التبويبات الرئيسي (Navigation Tabs) -->
+      <div class="border-t border-matteGold/20 bg-obsidian/60 overflow-x-auto scrollbar-none">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-8 flex items-center gap-1 sm:gap-2 py-2 min-w-max">
+          <button
+            type="button"
+            onclick="window.switchTab('overview')"
+            id="tab-btn-overview"
+            class="tab-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 cursor-pointer"
+          >
+            <span>📊</span>
+            <span>التقارير والمؤشرات</span>
+          </button>
+
+          <button
+            type="button"
+            onclick="window.switchTab('orders')"
+            id="tab-btn-orders"
+            class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-royalBeige/80 hover:text-matteGold hover:bg-espresso transition-all flex items-center gap-2 cursor-pointer"
+          >
+            <span>📦</span>
+            <span>الطلبات والعملاء</span>
+            <span id="orders-count-badge" class="px-1.5 py-0.5 rounded-full bg-matteGold/20 text-matteGold text-[11px] font-bold">0</span>
+          </button>
+
+          <button
+            type="button"
+            onclick="window.switchTab('products')"
+            id="tab-btn-products"
+            class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-royalBeige/80 hover:text-matteGold hover:bg-espresso transition-all flex items-center gap-2 cursor-pointer"
+          >
+            <span>👗</span>
+            <span>إدارة المنتجات والصور</span>
+            <span id="products-count-badge" class="px-1.5 py-0.5 rounded-full bg-matteGold/20 text-matteGold text-[11px] font-bold">0</span>
+          </button>
+
+          <button
+            type="button"
+            onclick="window.switchTab('consultations')"
+            id="tab-btn-consultations"
+            class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-royalBeige/80 hover:text-matteGold hover:bg-espresso transition-all flex items-center gap-2 cursor-pointer"
+          >
+            <span>💍</span>
+            <span>حجوزات العرائس</span>
+            <span id="consultations-count-badge" class="px-1.5 py-0.5 rounded-full bg-matteGold/20 text-matteGold text-[11px] font-bold">0</span>
+          </button>
+
+          <button
+            type="button"
+            onclick="window.switchTab('settings')"
+            id="tab-btn-settings"
+            class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-royalBeige/80 hover:text-matteGold hover:bg-espresso transition-all flex items-center gap-2 cursor-pointer"
+          >
+            <span>⚙️</span>
+            <span>إعدادات الدفع والشحن</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- مساحة المحتوى الرئيسية -->
+    <main class="flex-1 max-w-[1440px] w-full mx-auto p-4 sm:p-8 space-y-6">
+
+      <!-- =====================================================================
+           التبويب 1: التقارير والمؤشرات العامة (Overview Tab)
+           ===================================================================== -->
+      <section id="tab-content-overview" class="space-y-6 animate-fadeIn">
+        
+        <!-- بطاقة ترحيب وشريط سريع -->
+        <div class="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-espresso via-obsidian to-espresso border border-matteGold/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <h2 class="font-display text-xl sm:text-2xl font-bold text-ivory">أهلاً بكِ في لوحة تحكم VoltEdge Atelier ✨</h2>
+            <p class="text-xs sm:text-sm text-royalBeige/70 mt-1">متابعة فورية للمبيعات، تجهيز الطلبات، وتعديل الكتالوج والصور لجميع محافظات مصر.</p>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <button
+              type="button"
+              onclick="window.openAddProductModal()"
+              class="px-4 py-2.5 rounded-xl bg-matteGold hover:bg-goldHover text-espresso font-bold text-xs sm:text-sm transition-all shadow-md flex items-center gap-1.5 cursor-pointer"
+            >
+              <span>+</span>
+              <span>إضافة فستان/إكسسوار جديد</span>
+            </button>
+            <button
+              type="button"
+              onclick="window.createQuickDemoOrder()"
+              class="px-3.5 py-2.5 rounded-xl bg-obsidian hover:bg-espresso border border-matteGold/30 text-matteGold text-xs font-semibold transition-all flex items-center gap-1 cursor-pointer"
+              title="إنشاء طلب تجريبي للاختبار"
+            >
+              <span>⚡</span>
+              <span>طلب تجريبي</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- كروت الإحصائيات الأربعة (KPIs) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <!-- 1. إجمالي المبيعات -->
+          <div class="p-5 rounded-2xl bg-espresso/80 border border-matteGold/30 space-y-2">
+            <div class="flex items-center justify-between text-xs text-royalBeige/70">
+              <span>إجمالي المبيعات المحققة</span>
+              <span class="w-8 h-8 rounded-xl bg-matteGold/15 text-matteGold flex items-center justify-center text-sm font-bold">💰</span>
+            </div>
+            <div id="kpi-total-sales" class="font-display text-2xl sm:text-3xl font-bold text-matteGold tabular-nums">0 ج.م</div>
+            <p class="text-[11px] text-emerald-400 flex items-center gap-1">
+              <span>↑</span>
+              <span>محسوب تلقائياً من إجمالي الطلبات النشطة</span>
+            </p>
+          </div>
+
+          <!-- 2. عدد الطلبات الكلي -->
+          <div class="p-5 rounded-2xl bg-espresso/80 border border-matteGold/30 space-y-2">
+            <div class="flex items-center justify-between text-xs text-royalBeige/70">
+              <span>إجمالي عدد الطلبات</span>
+              <span class="w-8 h-8 rounded-xl bg-matteGold/15 text-matteGold flex items-center justify-center text-sm font-bold">📦</span>
+            </div>
+            <div id="kpi-total-orders" class="font-display text-2xl sm:text-3xl font-bold text-ivory tabular-nums">0</div>
+            <p class="text-[11px] text-royalBeige/60">يشمل كل محافظات الجمهورية 🇪🇬</p>
+          </div>
+
+          <!-- 3. طلبات قيد التجهيز والشحن -->
+          <div class="p-5 rounded-2xl bg-espresso/80 border border-matteGold/30 space-y-2">
+            <div class="flex items-center justify-between text-xs text-royalBeige/70">
+              <span>طلبات قيد التجهيز / الشحن</span>
+              <span class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center text-sm font-bold">⏳</span>
+            </div>
+            <div id="kpi-pending-orders" class="font-display text-2xl sm:text-3xl font-bold text-amber-400 tabular-nums">0</div>
+            <p class="text-[11px] text-amber-400/80">تتطلب المتابعة مع المندوب</p>
+          </div>
+
+          <!-- 4. طلبات تم تسليمها بنجاح -->
+          <div class="p-5 rounded-2xl bg-espresso/80 border border-matteGold/30 space-y-2">
+            <div class="flex items-center justify-between text-xs text-royalBeige/70">
+              <span>طلبات تم تسليمها بنجاح</span>
+              <span class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-sm font-bold">✅</span>
+            </div>
+            <div id="kpi-delivered-orders" class="font-display text-2xl sm:text-3xl font-bold text-emerald-400 tabular-nums">0</div>
+            <p class="text-[11px] text-emerald-400/80">تم تحصيل المبلغ نقداً أو تحويل</p>
+          </div>
+
+        </div>
+
+        <!-- شبكة الإحصائيات التفصيلية (وسائل الدفع المصرية + المحافظات) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- توزيع وسائل الدفع المصرية -->
+          <div class="p-5 sm:p-6 rounded-2xl bg-espresso/80 border border-matteGold/30 space-y-4">
+            <h3 class="font-display text-base sm:text-lg font-bold text-ivory flex items-center gap-2">
+              <span>💳</span>
+              <span>وسائل الدفع في مصر (نسبة الاستخدام)</span>
+            </h3>
+            
+            <div class="space-y-3 text-xs" id="payments-breakdown-list">
+              <!-- ديناميكي -->
+            </div>
+          </div>
+
+          <!-- المحافظات الأكثر طلباً -->
+          <div class="p-5 sm:p-6 rounded-2xl bg-espresso/80 border border-matteGold/30 space-y-4">
+            <h3 class="font-display text-base sm:text-lg font-bold text-ivory flex items-center gap-2">
+              <span>📍</span>
+              <span>توزيع الطلبات حسب المحافظات</span>
+            </h3>
+            
+            <div class="space-y-3 text-xs" id="governorates-breakdown-list">
+              <!-- ديناميكي -->
+            </div>
+          </div>
+
+          <!-- القطع الأكثر طلباً والمخزون -->
+          <div class="p-5 sm:p-6 rounded-2xl bg-espresso/80 border border-matteGold/30 space-y-4">
+            <h3 class="font-display text-base sm:text-lg font-bold text-ivory flex items-center gap-2">
+              <span>👗</span>
+              <span>حالة الكتالوج والمنتجات</span>
+            </h3>
+
+            <div class="space-y-3 text-xs">
+              <div class="p-3 rounded-xl bg-obsidian/70 border border-royalBronze/20 flex items-center justify-between">
+                <span>إجمالي القطع في الكتالوج:</span>
+                <strong id="catalog-total-count" class="text-matteGold tabular-nums font-bold">0</strong>
+              </div>
+              <div class="p-3 rounded-xl bg-obsidian/70 border border-royalBronze/20 flex items-center justify-between">
+                <span>قطع متوفرة للشحن الفوري:</span>
+                <strong id="catalog-available-count" class="text-emerald-400 tabular-nums font-bold">0</strong>
+              </div>
+              <div class="p-3 rounded-xl bg-obsidian/70 border border-royalBronze/20 flex items-center justify-between">
+                <span>استشارات حجز العرائس المسجلة:</span>
+                <strong id="kpi-bridal-count" class="text-matteGold tabular-nums font-bold">0</strong>
+              </div>
+              <div class="pt-2">
+                <button
+                  type="button"
+                  onclick="window.switchTab('products')"
+                  class="w-full py-2.5 px-3 rounded-xl bg-matteGold/15 hover:bg-matteGold/25 text-matteGold border border-matteGold/40 text-xs font-bold transition-colors text-center"
+                >
+                  تعديل المنتجات والصور الآن ←
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- أحدث الطلبات الواردة (جدول مصغر) -->
+        <div class="p-5 sm:p-6 rounded-2xl bg-espresso/80 border border-matteGold/30 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-display text-lg font-bold text-ivory flex items-center gap-2">
+              <span>🕒</span>
+              <span>أحدث الطلبات المستلمة</span>
+            </h3>
+            <button
+              type="button"
+              onclick="window.switchTab('orders')"
+              class="text-xs text-matteGold hover:underline"
+            >
+              عرض كافة الطلبات ({<span id="recent-orders-total">0</span>}) ←
+            </button>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-right text-xs">
+              <thead>
+                <tr class="border-b border-matteGold/20 text-royalBeige/60">
+                  <th class="py-3 px-3">رقم الطلب</th>
+                  <th class="py-3 px-3">العميل</th>
+                  <th class="py-3 px-3">المحافظة</th>
+                  <th class="py-3 px-3">وسيلة الدفع</th>
+                  <th class="py-3 px-3">المبلغ</th>
+                  <th class="py-3 px-3">الحالة</th>
+                  <th class="py-3 px-3 text-center">إجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="recent-orders-table-body" class="divide-y divide-matteGold/10">
+                <!-- ديناميكي -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- =====================================================================
+           التبويب 2: إدارة الطلبات والعملاء (Orders Tab)
+           ===================================================================== -->
+      <section id="tab-content-orders" class="hidden space-y-6 animate-fadeIn">
+        
+        <!-- أدوات البحث والتصفية والأزرار -->
+        <div class="p-5 rounded-2xl bg-espresso/80 border border-matteGold/30 space-y-4">
+          
+          <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+            <div>
+              <h2 class="font-display text-xl font-bold text-ivory">سجل طلبات العملاء والفواتير</h2>
+              <p class="text-xs text-royalBeige/70">يمكنك تعديل حالة أي طلب وتغييرها فورياً (جاري التجهيز، تم الشحن، تم التسليم) أو عرض الفاتورة.</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button
+                type="button"
+                onclick="window.createQuickDemoOrder()"
+                class="px-3.5 py-2.5 rounded-xl bg-matteGold hover:bg-goldHover text-espresso font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer"
+              >
+                <span>+</span>
+                <span>إضافة طلب تجريبي</span>
+              </button>
+              <button
+                type="button"
+                onclick="window.resetOrdersToDemo()"
+                class="px-3 py-2.5 rounded-xl bg-obsidian hover:bg-espresso border border-matteGold/30 text-royalBeige hover:text-matteGold text-xs transition-all"
+                title="إعادة تعيين نماذج الطلبات التجريبية"
+              >
+                🔄 استعادة النماذج
+              </button>
+            </div>
+          </div>
+
+          <!-- شريط الفلاتر والبحث -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+            <!-- بحث نصي -->
+            <div>
+              <input
+                type="text"
+                id="orders-search-input"
+                oninput="window.renderOrdersTable()"
+                placeholder="بحث باسم العميل، الهاتف، كود الطلب..."
+                class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-matteGold/30 focus:border-matteGold text-xs text-ivory outline-none placeholder:text-royalBeige/40"
+              />
+            </div>
+
+            <!-- تصفية حسب الحالة -->
+            <div>
+              <select
+                id="orders-status-filter"
+                onchange="window.renderOrdersTable()"
+                class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-matteGold/30 focus:border-matteGold text-xs text-ivory outline-none"
+              >
+                <option value="all">كافة الحالات (الكل)</option>
+                <option value="pending">⏳ جاري التجهيز (قيد الانتظار)</option>
+                <option value="shipped">🚚 تم الشحن مع المندوب</option>
+                <option value="delivered">✅ تم التسليم بنجاح</option>
+                <option value="cancelled">❌ ملغي</option>
+              </select>
+            </div>
+
+            <!-- تصفية حسب طريقة الدفع -->
+            <div>
+              <select
+                id="orders-payment-filter"
+                onchange="window.renderOrdersTable()"
+                class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-matteGold/30 focus:border-matteGold text-xs text-ivory outline-none"
+              >
+                <option value="all">كافة طرق الدفع (مصر)</option>
+                <option value="cod">💵 الدفع عند الاستلام</option>
+                <option value="instapay">⚡ إنستاباي InstaPay</option>
+                <option value="vodafone">📱 فودافون كاش ومحافظ المحمول</option>
+                <option value="card">💳 كارت ميزة والبطاقات البنكية</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- جدول الطلبات الرئيسي -->
+        <div class="rounded-2xl bg-espresso/80 border border-matteGold/30 overflow-hidden shadow-xl">
+          <div class="overflow-x-auto">
+            <table class="w-full text-right text-xs min-w-[760px]">
+              <thead class="bg-obsidian/80 text-royalBeige/70 border-b border-matteGold/20 font-semibold">
+                <tr>
+                  <th class="py-3.5 px-4">رقم الطلب والتاريخ</th>
+                  <th class="py-3.5 px-4">العميل ورقم الهاتف</th>
+                  <th class="py-3.5 px-4">العنوان والمحافظة</th>
+                  <th class="py-3.5 px-4">القطع المطلوبة</th>
+                  <th class="py-3.5 px-4">وسيلة الدفع</th>
+                  <th class="py-3.5 px-4">المبلغ الكلي</th>
+                  <th class="py-3.5 px-4">حالة الطلب (تغيير فوري)</th>
+                  <th class="py-3.5 px-4 text-center">الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="orders-table-body" class="divide-y divide-matteGold/10">
+                <!-- ديناميكي -->
+              </tbody>
+            </table>
+          </div>
+
+          <div id="no-orders-msg" class="hidden p-8 text-center text-royalBeige/60 text-sm">
+            لا توجد طلبات مطابقة للبحث الحالي.
+          </div>
+        </div>
+
+      </section>
+
+      <!-- =====================================================================
+           التبويب 3: إدارة المنتجات والصور (Products & Images Tab)
+           ===================================================================== -->
+      <section id="tab-content-products" class="hidden space-y-6 animate-fadeIn">
+        
+        <!-- رأس إدارة المنتجات والأزرار -->
+        <div class="p-5 sm:p-6 rounded-2xl bg-espresso/80 border border-matteGold/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <h2 class="font-display text-xl sm:text-2xl font-bold text-ivory">إدارة فساتين الأتيليه والصور (كتالوج تجريبي)</h2>
+            <p class="text-xs sm:text-sm text-royalBeige/70 mt-1">
+              يمكنك رفع صور من جهازك، تعديل الأسعار، تغيير الصور الحالية، أو إضافة فساتين جديدة وتظهر فوراً أثناء جلستك!
+            </p>
+          </div>
+          
+          <div class="flex items-center gap-2 flex-wrap">
+            <button
+              type="button"
+              onclick="window.openAddProductModal()"
+              class="px-4 py-2.5 rounded-xl bg-matteGold hover:bg-goldHover text-espresso font-bold text-xs sm:text-sm transition-all shadow-md flex items-center gap-1.5 cursor-pointer"
+            >
+              <span>+</span>
+              <span>إضافة قطعة جديدة للأتيليه</span>
+            </button>
+            <button
+              type="button"
+              onclick="window.resetCatalogToDefaults()"
+              class="px-3 py-2.5 rounded-xl bg-obsidian hover:bg-espresso border border-matteGold/30 text-royalBeige hover:text-matteGold text-xs transition-all"
+              title="إعادة ضبط المنتجات للوضع الأصلي"
+            >
+              🔄 استعادة الكتالوج الأصلي
+            </button>
+          </div>
+        </div>
+
+        <!-- فلاتر الأقسام والبحث -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-1">
+            <button
+              type="button"
+              onclick="window.filterCatalogByCategory('all')"
+              class="cat-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-matteGold text-espresso"
+              data-cat="all"
+            >
+              كافة الأقسام
+            </button>
+            <button
+              type="button"
+              onclick="window.filterCatalogByCategory('evening')"
+              class="cat-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-obsidian text-royalBeige hover:text-matteGold"
+              data-cat="evening"
+            >
+              فساتين سهرة
+            </button>
+            <button
+              type="button"
+              onclick="window.filterCatalogByCategory('wedding')"
+              class="cat-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-obsidian text-royalBeige hover:text-matteGold"
+              data-cat="wedding"
+            >
+              زفاف وعرائس
+            </button>
+            <button
+              type="button"
+              onclick="window.filterCatalogByCategory('accessories')"
+              class="cat-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-obsidian text-royalBeige hover:text-matteGold"
+              data-cat="accessories"
+            >
+              إكسسوارات ملكية
+            </button>
+            <button
+              type="button"
+              onclick="window.filterCatalogByCategory('exclusive')"
+              class="cat-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-obsidian text-royalBeige hover:text-matteGold"
+              data-cat="exclusive"
+            >
+              المجموعة الحصرية
+            </button>
+          </div>
+
+          <!-- بحث المنتجات -->
+          <div class="w-full sm:w-64">
+            <input
+              type="text"
+              id="catalog-search-input"
+              oninput="window.renderCatalogGrid()"
+              placeholder="ابحث باسم الفستان أو الكود..."
+              class="w-full px-3.5 py-2 rounded-xl bg-obsidian border border-matteGold/30 focus:border-matteGold text-xs text-ivory outline-none placeholder:text-royalBeige/40"
+            />
+          </div>
+        </div>
+
+        <!-- شبكة كروت المنتجات التفاعلية -->
+        <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+          <!-- ديناميكي عبر JavaScript -->
+        </div>
+
+      </section>
+
+      <!-- =====================================================================
+           التبويب 4: حجوزات واستشارات العرائس (Bridal Consultations Tab)
+           ===================================================================== -->
+      <section id="tab-content-consultations" class="hidden space-y-6 animate-fadeIn">
+        
+        <div class="p-5 rounded-2xl bg-espresso/80 border border-matteGold/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <h2 class="font-display text-xl font-bold text-ivory">مواعيد واستشارات العرائس (Bridal Appointments)</h2>
+            <p class="text-xs text-royalBeige/70 mt-1">الطلبات المسجلة من صفحة العرائس لحجز بروفات التفصيل الخاص واستشارات الكوتور.</p>
+          </div>
+          <button
+            type="button"
+            onclick="window.addDemoBridalBooking()"
+            class="px-3.5 py-2 rounded-xl bg-matteGold hover:bg-goldHover text-espresso font-bold text-xs transition-all flex items-center gap-1.5"
+          >
+            <span>+</span>
+            <span>إضافة موعد عروس تجريبي</span>
+          </button>
+        </div>
+
+        <!-- جدول الحجوزات -->
+        <div class="rounded-2xl bg-espresso/80 border border-matteGold/30 overflow-hidden shadow-xl">
+          <div class="overflow-x-auto">
+            <table class="w-full text-right text-xs min-w-[650px]">
+              <thead class="bg-obsidian/80 text-royalBeige/70 border-b border-matteGold/20 font-semibold">
+                <tr>
+                  <th class="py-3.5 px-4">رقم الحجز</th>
+                  <th class="py-3.5 px-4">اسم العروس</th>
+                  <th class="py-3.5 px-4">رقم الهاتف</th>
+                  <th class="py-3.5 px-4">تاريخ الزفاف / المناسبة</th>
+                  <th class="py-3.5 px-4">نوع الموعد</th>
+                  <th class="py-3.5 px-4">حالة التواصل</th>
+                  <th class="py-3.5 px-4 text-center">الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="bridal-bookings-table-body" class="divide-y divide-matteGold/10">
+                <!-- ديناميكي -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- =====================================================================
+           التبويب 5: إعدادات الدفع والشحن في مصر (Settings Tab)
+           ===================================================================== -->
+      <section id="tab-content-settings" class="hidden space-y-6 animate-fadeIn">
+        
+        <div class="max-w-2xl mx-auto p-6 rounded-2xl bg-espresso/80 border border-matteGold/30 space-y-6">
+          <div>
+            <h2 class="font-display text-xl font-bold text-ivory">إعدادات وسائل الدفع والشحن في مصر 🇪🇬</h2>
+            <p class="text-xs text-royalBeige/70 mt-1">تعديل بيانات فودافون كاش، إنستاباي، وسياسة الشحن التجريبية.</p>
+          </div>
+
+          <form id="settings-form" class="space-y-4" onsubmit="event.preventDefault(); window.saveAtelierSettings();">
+            <!-- رقم فودافون كاش -->
+            <div>
+              <label for="set-vf-phone" class="block text-xs font-bold text-royalBeige mb-1">رقم محفظة فودافون كاش الرسمية للأتيليه</label>
+              <input
+                type="text"
+                id="set-vf-phone"
+                value="01024567891"
+                class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-matteGold/30 focus:border-matteGold text-sm text-ivory outline-none"
+              />
+              <p class="text-[11px] text-royalBeige/50 mt-1">يظهر للعميل في نافذة إتمام الطلب وتعليمات التحويل</p>
+            </div>
+
+            <!-- معرف إنستاباي -->
+            <div>
+              <label for="set-instapay-id" class="block text-xs font-bold text-royalBeige mb-1">معرف إنستاباي (InstaPay IPA ID)</label>
+              <input
+                type="text"
+                id="set-instapay-id"
+                value="voltedge@instapay"
+                class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-matteGold/30 focus:border-matteGold text-sm text-ivory outline-none"
+              />
+              <p class="text-[11px] text-royalBeige/50 mt-1">معرف التحويل اللحظي عبر تطبيق InstaPay</p>
+            </div>
+
+            <!-- رقم واتساب خدمة العملاء -->
+            <div>
+              <label for="set-wa-phone" class="block text-xs font-bold text-royalBeige mb-1">رقم واتساب خدمة العملاء (بالصيغة الدولية)</label>
+              <input
+                type="text"
+                id="set-wa-phone"
+                value="201024567891"
+                class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-matteGold/30 focus:border-matteGold text-sm text-ivory outline-none"
+              />
+              <p class="text-[11px] text-royalBeige/50 mt-1">تُرسل إليه رسائل تأكيد الحجوزات مع تفاصيل الأوردر</p>
+            </div>
+
+            <!-- سياسة الشحن -->
+            <div>
+              <label class="block text-xs font-bold text-royalBeige mb-1">رسوم الشحن لجميع محافظات مصر</label>
+              <div class="p-3 rounded-xl bg-obsidian border border-matteGold/20 flex items-center justify-between text-xs">
+                <span>شحن مؤمّن ومجاني لكافة محافظات جمهورية مصر العربية</span>
+                <span class="text-emerald-400 font-bold">مجاناً (0 ج.م)</span>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full py-3.5 px-6 rounded-xl bg-matteGold hover:bg-goldHover text-espresso font-bold text-sm transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>حفظ التعديلات التجريبية</span>
+              <span>💾</span>
+            </button>
+          </form>
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- =========================================================================
+       3. MODAL: إضافة وتعديل الفساتين والمنتجات مع رفع وتغيير الصور
+       ========================================================================= -->
+  <div id="product-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-4 bg-espresso/80 backdrop-blur-xs overflow-y-auto">
+    <div class="relative w-full max-w-xl bg-espresso text-ivory rounded-2xl border-2 border-matteGold/50 shadow-2xl overflow-hidden my-auto max-h-[94vh] flex flex-col animate-fadeIn">
+      
+      <!-- رأس النافذة -->
+      <div class="bg-obsidian p-4 sm:p-5 flex items-center justify-between border-b border-matteGold/30 shrink-0">
+        <div>
+          <h3 id="product-modal-title" class="font-display text-lg sm:text-xl font-bold text-ivory">إضافة فستان / قطعة جديدة</h3>
+          <p class="text-[11px] text-matteGold/90">تعديل بيانات القطعة، السعر، ورفع أو تغيير صورتها فورياً</p>
+        </div>
+        <button type="button" onclick="window.closeProductModal()" class="w-8 h-8 rounded-full bg-ivory/10 hover:bg-matteGold hover:text-espresso flex items-center justify-center transition-colors text-sm">✕</button>
+      </div>
+
+      <!-- محتوى النموذج -->
+      <form id="product-form" class="p-5 sm:p-6 space-y-4 overflow-y-auto flex-1" onsubmit="event.preventDefault(); window.handleSaveProduct();">
+        <input type="hidden" id="pm-item-id" value="" />
+
+        <!-- اسم القطعة -->
+        <div>
+          <label for="pm-name" class="block text-xs font-bold text-royalBeige mb-1">اسم الفستان أو الإكسسوار <span class="text-red-400">*</span></label>
+          <input
+            type="text"
+            id="pm-name"
+            required
+            placeholder="مثال: فستان إيزيس كوتور الملكي المطرز"
+            class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-matteGold/30 focus:border-matteGold text-sm text-ivory outline-none placeholder:text-royalBeige/30"
+          />
+        </div>
+
+        <!-- القسم والسعر -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="pm-category" class="block text-xs font-bold text-royalBeige mb-1">القسم / التصنيف <span class="text-red-400">*</span></label>
+            <select
+              id="pm-category"
+              required
+              class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-matteGold/30 focus:border-matteGold text-xs text-ivory outline-none"
+            >
+              <option value="evening">فساتين سهرة</option>
+              <option value="wedding">زفاف وعرائس</option>
+              <option value="accessories">إكسسوارات ملكية</option>
+              <option value="exclusive">المجموعة الحصرية</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="pm-price" class="block text-xs font-bold text-royalBeige mb-1">السعر (بالجنيه المصري ج.م) <span class="text-red-400">*</span></label>
+            <input
+              type="number"
+              id="pm-price"
+              required
+              min="0"
+              step="50"
+              placeholder="مثال: 14500"
+              class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-matteGold/30 focus:border-matteGold text-sm text-ivory outline-none placeholder:text-royalBeige/30"
+            />
+          </div>
+        </div>
+
+        <!-- حالة التوفر والكود -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="pm-status" class="block text-xs font-bold text-royalBeige mb-1">حالة التوفر</label>
+            <select
+              id="pm-status"
+              class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-matteGold/30 focus:border-matteGold text-xs text-ivory outline-none"
+            >
+              <option value="in_stock">متوفر للشحن الفوري ✅</option>
+              <option value="made_to_order">تفصيل خاص حسب الطلب 🧵</option>
+              <option value="out_of_stock">نفذت الكمية حالياً ❌</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="pm-sku" class="block text-xs font-bold text-royalBeige mb-1">كود القطعة (SKU)</label>
+            <input
+              type="text"
+              id="pm-sku"
+              placeholder="مثال: VE-9402"
+              class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-matteGold/30 focus:border-matteGold text-sm text-ivory outline-none placeholder:text-royalBeige/30"
+            />
+          </div>
+        </div>
+
+        <!-- الوصف -->
+        <div>
+          <label for="pm-desc" class="block text-xs font-bold text-royalBeige mb-1">وصف وتفاصيل القطعة</label>
+          <textarea
+            id="pm-desc"
+            rows="2"
+            placeholder="خامات حرير طبيعي، تطريز يدوي بخيوط الذهب، كورسيه منحوت..."
+            class="w-full px-3.5 py-2 rounded-xl bg-obsidian border border-matteGold/30 focus:border-matteGold text-xs text-ivory outline-none placeholder:text-royalBeige/30"
+          ></textarea>
+        </div>
+
+        <!-- إدارة وصور المنتج (رفع من الجهاز أو اختيار من الأتيليه) -->
+        <div class="p-4 rounded-xl bg-obsidian border border-matteGold/30 space-y-3">
+          <label class="block text-xs font-bold text-matteGold">
+            🖼️ صورة الفستان / القطعة (رفع صورة أو اختيار جاهزة)
+          </label>
+
+          <!-- شاشة معاينة الصورة الحالية -->
+          <div class="flex items-center gap-4">
+            <img
+              id="pm-image-preview"
+              src="/images/evening-1.jfif"
+              alt="معاينة الصورة"
+              class="w-20 h-24 object-cover rounded-xl border-2 border-matteGold/40 bg-espresso shrink-0 shadow-md"
+            />
+            <div class="space-y-1.5 flex-1 min-w-0">
+              <span class="text-xs text-royalBeige font-semibold block">معاينة الصورة الحالية:</span>
+              <p class="text-[11px] text-royalBeige/60">يمكنك رفع أي صورة من جهازك الشخصي أو هاتفك لتجربتها مباشرة!</p>
+            </div>
+          </div>
+
+          <!-- خيار 1: رفع صورة من الجهاز مباشرة -->
+          <div>
+            <label class="block text-[11px] font-semibold text-royalBeige/80 mb-1">١. رفع صورة من الكمبيوتر أو الهاتف (Upload File):</label>
+            <input
+              type="file"
+              id="pm-image-file"
+              accept="image/*"
+              onchange="window.handleImageFileUpload(event)"
+              class="w-full text-xs text-royalBeige file:mr-0 file:ml-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-matteGold file:text-espresso hover:file:bg-goldHover cursor-pointer"
+            />
+          </div>
+
+          <!-- خيار 2: اختيار صورة سريعة من مكتبة الأتيليه -->
+          <div>
+            <label class="block text-[11px] font-semibold text-royalBeige/80 mb-1">٢. أو اختيار من مكتبة صور الأتيليه المتاحة:</label>
+            <select
+              id="pm-preset-image"
+              onchange="window.handlePresetImageSelect(this.value)"
+              class="w-full px-3 py-2 rounded-xl bg-espresso border border-matteGold/20 text-xs text-ivory outline-none"
+            >
+              <option value="">اختاري صورة من المكتبة...</option>
+              <optgroup label="فساتين سهرة">
+                <option value="/images/evening-1.jfif">سهرة 1 (زمردي ملكي)</option>
+                <option value="/images/evening-2.jfif">سهرة 2 (ياقوتي)</option>
+                <option value="/images/evening-3.jfif">سهرة 3 (ذهب سائل)</option>
+                <option value="/images/evening-4.jfif">سهرة 4 (كحلي ملكي)</option>
+                <option value="/images/evening-5.jfif">سهرة 5 (أسود ملكي)</option>
+                <option value="/images/evening-6.jfif">سهرة 6 (عاجي مطرز)</option>
+                <option value="/images/evening-7.jfif">سهرة 7 (برونزي كوتور)</option>
+                <option value="/images/evening-8.jfif">سهرة 8 (نيود ذهبي)</option>
+              </optgroup>
+              <optgroup label="فساتين زفاف">
+                <option value="/images/wedding-1.jfif">زفاف 1 (طرحة ملكية)</option>
+                <option value="/images/wedding-2.jfif">زفاف 2 (قصة برنسيس)</option>
+                <option value="/images/wedding-3.jfif">زفاف 3 (دانتيل فرنسي)</option>
+                <option value="/images/wedding-4.jfif">زفاف 4 (لؤلؤ عاجي)</option>
+                <option value="/images/wedding-5.jfif">زفاف 5 (ذيل ملكي)</option>
+              </optgroup>
+              <optgroup label="إكسسوارات ملكية">
+                <option value="/images/acc-1.jfif">إكسسوار 1 (تاج ملكي)</option>
+                <option value="/images/acc-2.jfif">إكسسوار 2 (عقد ألماس)</option>
+                <option value="/images/acc-3.jfif">إكسسوار 3 (كلاتش سواريه)</option>
+                <option value="/images/acc-4.jfif">إكسسوار 4 (أقراط لؤلؤ)</option>
+              </optgroup>
+              <optgroup label="المجموعة الحصرية">
+                <option value="/images/exclusive-1.jfif">حصري 1</option>
+                <option value="/images/exclusive-2.jfif">حصري 2</option>
+                <option value="/images/exclusive-3.jfif">حصري 3</option>
+                <option value="/images/exclusive-4.jfif">حصري 4</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <!-- خيار 3: رابط خارجي للصورة -->
+          <div>
+            <label class="block text-[11px] font-semibold text-royalBeige/80 mb-1">٣. أو إدخال رابط خارجي للصورة (Image URL):</label>
+            <input
+              type="text"
+              id="pm-image-url"
+              oninput="window.handleCustomImageUrl(this.value)"
+              placeholder="https://..."
+              class="w-full px-3 py-1.5 rounded-xl bg-espresso border border-matteGold/20 text-xs text-ivory outline-none placeholder:text-royalBeige/30"
+            />
+          </div>
+
+        </div>
+
+        <!-- زر الحفظ -->
+        <div class="pt-2">
+          <button
+            type="submit"
+            class="w-full py-3.5 px-6 rounded-xl bg-matteGold hover:bg-goldHover text-espresso font-bold text-sm shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <span>حفظ بيانات الفستان والصورة</span>
+            <span>✓</span>
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       4. MODAL: تفاصيل الفاتورة القابلة للطباعة (Invoice Modal)
+       ========================================================================= -->
+  <div id="invoice-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-4 bg-espresso/80 backdrop-blur-xs overflow-y-auto">
+    <div class="relative w-full max-w-lg bg-ivory text-espresso rounded-2xl border-2 border-matteGold/60 shadow-2xl overflow-hidden my-auto p-6 sm:p-8 space-y-5 animate-fadeIn">
+      
+      <div class="flex items-center justify-between border-b border-royalBronze/20 pb-4">
+        <div>
+          <span dir="ltr" class="font-display text-2xl font-bold tracking-wider text-espresso">
+            VoltEdge <span class="text-matteGold font-normal italic">Atelier</span>
+          </span>
+          <p class="text-[11px] text-mutedCocoa mt-0.5">فاتورة حجز أزياء رسمية — جمهورية مصر العربية 🇪🇬</p>
+        </div>
+        <button type="button" onclick="window.closeInvoiceModal()" class="w-8 h-8 rounded-full bg-royalBeige hover:bg-matteGold text-espresso flex items-center justify-center transition-colors text-sm">✕</button>
+      </div>
+
+      <div id="invoice-modal-content" class="space-y-4 text-xs">
+        <!-- ديناميكي -->
+      </div>
+
+      <div class="pt-4 border-t border-royalBronze/20 flex items-center gap-3">
+        <button
+          type="button"
+          onclick="window.print()"
+          class="flex-1 py-2.5 px-4 rounded-xl bg-espresso hover:bg-royalBronze text-ivory font-bold text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
+        >
+          <span>🖨️</span>
+          <span>طباعة الفاتورة</span>
+        </button>
+        <button
+          type="button"
+          onclick="window.closeInvoiceModal()"
+          class="py-2.5 px-4 rounded-xl bg-royalBeige hover:bg-matteGold/20 text-espresso font-semibold text-xs transition-colors cursor-pointer"
+        >
+          إغلاق
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast للإشعارات السريعة -->
+  <div id="admin-toast" class="fixed bottom-5 inset-x-4 sm:inset-x-auto sm:left-6 z-50 max-w-sm bg-matteGold text-espresso border border-ivory px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-24 opacity-0 pointer-events-none transition-all duration-200">
+    <span class="w-6 h-6 rounded-full bg-espresso text-matteGold flex items-center justify-center font-bold text-xs shrink-0">✓</span>
+    <p id="admin-toast-text" class="text-xs sm:text-sm font-bold"></p>
+  </div>
+
+  <!-- كود الجافاسكريبت للوحة الإدارة بالكامل (Static Client-Side Vanilla JS) -->
+  <script src="/admin-system.js"></script>
+</body>
+</html>
