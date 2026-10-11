@@ -132,13 +132,23 @@
        1. قسم HERO بملء الشاشة بصورة خلفية وعنوان رئيسي وزر CTA
        ===================================================================== -->
   <section class="relative min-h-[86vh] flex items-center overflow-hidden bg-espresso">
-    <img
-      src="images/hero-atelier.jfif"
-      alt="واجهة أتيليه فولت إيدج الفاخر تعرض فستان سهرة ملكي مطرز بالذهب"
-      referrerPolicy="no-referrer"
-      class="absolute inset-0 w-full h-full object-cover object-center scale-105 transition-transform duration-1000"
-    />
-    <div class="absolute inset-0 bg-gradient-to-l from-espresso/90 via-espresso/65 to-espresso/30"></div>
+    <!-- فيديو خلفية الأتيليه السينمائي بدلاً من الصورة الثابتة -->
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="images/hero-atelier.jfif"
+      class="absolute inset-0 w-full h-full object-cover object-center scale-105"
+    >
+      <source src="images/ateliers-bridal-cinematic-silent.mp4" type="video/mp4" />
+      <img
+        src="images/hero-atelier.jfif"
+        alt="واجهة أتيليه فولت إيدج الفاخر"
+        class="w-full h-full object-cover object-center"
+      />
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-l from-espresso/90 via-espresso/65 to-espresso/30 pointer-events-none"></div>
 
     <div class="relative z-10 max-w-[1380px] mx-auto px-4 sm:px-8 py-20 w-full">
       <div class="max-w-2xl space-y-6">
