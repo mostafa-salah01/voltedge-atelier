@@ -432,9 +432,9 @@
             VoltEdge <span class="text-matteGold font-normal italic">Atelier</span>
           </a>
           <p class="text-sm text-royalBeige/75 leading-relaxed">
-            أتيليه متخصص في تصميم وتنفيذ فساتين السهرة والزفاف الملكية والإكسسوارات الفاخرة، بمعايير عالمية تليق بالمرأة العربية.
+            أتيليه كوتور متخصص في تصميم وتنفيذ فساتين السهرة والزفاف الملكية والإكسسوارات الفاخرة، بأعلى معايير الأناقة العالمية.
           </p>
-          <p class="text-xs text-matteGold">الرياض — حي العليا، طريق الملك فهد · جناح الكوتور الخاص</p>
+          <p class="text-xs text-matteGold">الفرع الرئيسي: القاهرة — التجمع الخامس، شارع التسعين · جناح الكوتور والعرائس الخاص</p>
         </div>
 
         <div>
@@ -451,10 +451,10 @@
         <div>
           <h4 class="font-display text-lg font-bold text-ivory mb-4">خدمات الضيافة والتفصيل</h4>
           <ul class="space-y-2.5 text-sm text-royalBeige/80">
-            <li>تفصيل خاص حسب المقاس الشخصي</li>
-            <li>جلسات بروفة خاصة في جناح العرائس</li>
-            <li>شحن مؤمّن ومجاني لكافة مدن المملكة والخليج</li>
-            <li>ضمان جودة الأقمشة والتطريز اليدوي</li>
+            <li>تفصيل خاص حسب المقاس الشخصي الدقيق</li>
+            <li>جلسات بروفة خاصة في جناح العرائس الملكي</li>
+            <li>شحن مؤمّن ومجاني لكافة محافظات جمهورية مصر العربية 🇪🇬</li>
+            <li>ضمان جودة الأقمشة والتطريز اليدوي الفاخر</li>
           </ul>
         </div>
 
@@ -475,15 +475,26 @@
           </div>
 
           <div>
-            <p class="text-xs text-royalBeige/60 mb-2.5">وسائل الدفع الآمنة المعتمدة</p>
+            <p class="text-xs text-royalBeige/60 mb-2.5">وسائل الدفع المعتمدة في مصر 🇪🇬</p>
             <div class="flex flex-wrap items-center gap-2">
-              <span class="px-3 py-1.5 rounded bg-ivory text-espresso font-bold text-xs tracking-wide flex items-center gap-1.5">
+              <span class="px-3 py-1.5 rounded bg-ivory text-espresso font-bold text-xs tracking-wide flex items-center gap-1.5 shadow-xs">
+                <span>💵</span>
+                الدفع عند الاستلام
+              </span>
+              <span class="px-3 py-1.5 rounded bg-ivory text-espresso font-bold text-xs tracking-wide flex items-center gap-1.5 shadow-xs">
+                <span class="text-matteGold font-extrabold">⚡</span>
+                إنستاباي InstaPay
+              </span>
+              <span class="px-3 py-1.5 rounded bg-ivory text-[#E60000] font-bold text-xs tracking-wide flex items-center gap-1.5 shadow-xs">
+                <span class="w-2 h-2 rounded-full bg-[#E60000]"></span>
+                فودافون كاش
+              </span>
+              <span class="px-3 py-1.5 rounded bg-ivory text-espresso font-bold text-xs tracking-wide flex items-center gap-1.5 shadow-xs">
                 <span class="w-2 h-2 rounded-full bg-matteGold"></span>
                 ميزة Meeza
               </span>
-              <span class="px-3 py-1.5 rounded bg-ivory text-espresso font-bold text-xs tracking-wide" dir="ltr"> Pay</span>
-              <span class="px-3 py-1.5 rounded bg-ivory text-[#1A1F71] font-extrabold italic text-xs tracking-wider" dir="ltr">VISA</span>
-              <span class="px-2.5 py-1.5 rounded bg-ivory text-espresso font-bold text-xs flex items-center gap-1" dir="ltr">
+              <span class="px-3 py-1.5 rounded bg-ivory text-[#1A1F71] font-extrabold italic text-xs tracking-wider shadow-xs" dir="ltr">VISA</span>
+              <span class="px-2.5 py-1.5 rounded bg-ivory text-espresso font-bold text-xs flex items-center gap-1 shadow-xs" dir="ltr">
                 <span class="inline-block w-3 h-3 rounded-full bg-[#EB001B]"></span>
                 <span class="inline-block w-3 h-3 rounded-full bg-[#F79E1B] -ml-2"></span>
                 <span class="ml-1 text-[10px]">Mastercard</span>
@@ -530,152 +541,11 @@
     <p id="toast-message" class="text-xs sm:text-sm font-bold"></p>
   </div>
 
-  <!-- أكواد Vanilla JS -->
+  <!-- ربط نظام السلة والدفع الموحد المصري -->
+  <script src="/cart-system.js"></script>
+
+  <!-- وظائف الصفحة الخاصة (قائمة الموبايل) -->
   <script>
-    const CART_STORAGE_KEY = 'voltedge_atelier_cart_v1';
-
-    function formatEGP(amount) {
-      return Number(amount).toLocaleString('ar-EG') + ' ج.م';
-    }
-
-    function getCart() {
-      try {
-        const raw = localStorage.getItem(CART_STORAGE_KEY);
-        return raw ? JSON.parse(raw) : [];
-      } catch (e) {
-        return [];
-      }
-    }
-
-    function saveCart(cart) {
-      try {
-        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
-      } catch (e) {}
-      updateCartUI();
-    }
-
-    function addToCart(id, name, price, image, category) {
-      const cart = getCart();
-      const existing = cart.find(item => item.id === id);
-      if (existing) {
-        existing.qty += 1;
-      } else {
-        cart.push({ id, name, price: Number(price), image, category, qty: 1 });
-      }
-      saveCart(cart);
-      const badge = document.getElementById('cart-count-badge');
-      if (badge) {
-        badge.classList.add('scale-125');
-        setTimeout(() => badge.classList.remove('scale-125'), 220);
-      }
-      showToast('تمت إضافة "' + name + '" إلى حقيبة التسوق');
-    }
-
-    function changeQty(id, delta) {
-      let cart = getCart();
-      const target = cart.find(item => item.id === id);
-      if (!target) return;
-      target.qty += delta;
-      if (target.qty <= 0) {
-        cart = cart.filter(item => item.id !== id);
-      }
-      saveCart(cart);
-    }
-
-    function updateCartUI() {
-      const cart = getCart();
-      const totalCount = cart.reduce((acc, item) => acc + item.qty, 0);
-      const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
-
-      const badge = document.getElementById('cart-count-badge');
-      if (badge) badge.textContent = totalCount;
-
-      const totalEl = document.getElementById('cart-total-price');
-      if (totalEl) totalEl.textContent = formatEGP(totalPrice);
-
-      const container = document.getElementById('cart-items-container');
-      if (!container) return;
-
-      if (cart.length === 0) {
-        container.innerHTML = `
-          <div class="text-center py-16 space-y-3">
-            <p class="font-display text-xl text-mutedCocoa">حقيبة التسوق فارغة حالياً</p>
-            <p class="text-xs text-mutedCocoa/80">استكشفي تصاميم الأتيليه وأضيفي قطعكِ المفضلة</p>
-          </div>
-        `;
-        return;
-      }
-
-      container.innerHTML = cart.map(item => `
-        <div class="flex items-center gap-4 p-3 rounded-xl bg-royalBeige/70 border border-royalBronze/15">
-          <img src="${item.image}" alt="${item.name}" referrerPolicy="no-referrer" class="w-16 h-20 object-cover rounded-lg bg-royalBeige shrink-0" />
-          <div class="flex-1 min-w-0">
-            <p class="text-[11px] text-royalBronze">${item.category}</p>
-            <h4 class="font-display text-base font-bold text-espresso truncate">${item.name}</h4>
-            <p class="tabular-nums text-xs font-bold text-espresso mt-1">${formatEGP(item.price)}</p>
-          </div>
-          <div class="flex items-center gap-1.5 bg-ivory px-2 py-1 rounded-lg border border-royalBronze/20">
-            <button type="button" onclick="changeQty('${item.id}', -1)" class="w-6 h-6 text-xs font-bold hover:text-royalBronze">-</button>
-            <span class="tabular-nums text-xs font-bold px-1">${item.qty}</span>
-            <button type="button" onclick="changeQty('${item.id}', 1)" class="w-6 h-6 text-xs font-bold hover:text-royalBronze">+</button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    let toastTimer = null;
-    function showToast(message) {
-      const toast = document.getElementById('toast-notification');
-      const msgEl = document.getElementById('toast-message');
-      if (!toast || !msgEl) return;
-      msgEl.textContent = message;
-      toast.classList.remove('translate-y-24', 'opacity-0');
-      if (toastTimer) clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => {
-        toast.classList.add('translate-y-24', 'opacity-0');
-      }, 2800);
-    }
-
-    const openCartBtn = document.getElementById('open-cart-btn');
-    const closeCartBtn = document.getElementById('close-cart-btn');
-    const cartDrawer = document.getElementById('cart-drawer');
-    const cartBackdrop = document.getElementById('cart-drawer-backdrop');
-
-    function openCartDrawer() {
-      cartBackdrop.classList.remove('hidden');
-      setTimeout(() => {
-        cartBackdrop.classList.remove('opacity-0');
-        cartDrawer.classList.remove('translate-x-full');
-      }, 10);
-    }
-
-    function closeCartDrawer() {
-      cartBackdrop.classList.add('opacity-0');
-      cartDrawer.classList.add('translate-x-full');
-      setTimeout(() => cartBackdrop.classList.add('hidden'), 200);
-    }
-
-    if (openCartBtn) openCartBtn.addEventListener('click', openCartDrawer);
-    if (closeCartBtn) closeCartBtn.addEventListener('click', closeCartDrawer);
-    if (cartBackdrop) cartBackdrop.addEventListener('click', closeCartDrawer);
-
-    const checkoutBtn = document.getElementById('checkout-btn');
-    if (checkoutBtn) {
-      checkoutBtn.addEventListener('click', () => {
-        const cart = getCart();
-        const feedback = document.getElementById('checkout-feedback');
-        if (cart.length === 0) {
-          feedback.classList.remove('hidden');
-          feedback.textContent = 'الرجاء إضافة قطعة واحدة على الأقل قبل إتمام الطلب.';
-          return;
-        }
-        const orderNum = Math.floor(10000 + Math.random() * 90000);
-        saveCart([]);
-        feedback.classList.remove('hidden');
-        feedback.innerHTML = '<strong>تم استلام طلبكِ بنجاح رقم #' + orderNum + '</strong><br/>سيتواصل معكِ فريق خدمة عملاء الأتيليه خلال ساعة لتأكيد المقاسات وموعد التسليم.';
-      });
-    }
-
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     if (mobileMenuBtn && mobileMenu) {
@@ -683,8 +553,6 @@
         mobileMenu.classList.toggle('hidden');
       });
     }
-
-    document.addEventListener('DOMContentLoaded', updateCartUI);
   </script>
 </body>
 </html>
